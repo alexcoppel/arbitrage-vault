@@ -1,0 +1,2087 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="color-scheme" content="dark">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arbitrage Vault — La Formation Ultime en Arbitrage de Latence</title>
+<meta name="description" content="Maîtrise l'arbitrage de latence de A à Z. Stratégies 1-Leg, Lock, 2-Leg, DAAS & Westernpips 7. Formation complète.">
+<meta property="og:title" content="Arbitrage Vault — La Formation Ultime">
+<meta property="og:description" content="De zéro à trader opérationnel. 35 modules, 6 stratégies, Starter Pack réglages exacts inclus.">
+<meta property="og:url" content="https://arbitrage-vault.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #06080f;
+  --bg2: #090c15;
+  --surface: #0e1220;
+  --surface2: #141824;
+  --accent: #c8f135;
+  --accent-dim: rgba(200,241,53,0.12);
+  --accent-glow: rgba(200,241,53,0.25);
+  --white: #f0f2f8;
+  --muted: #5a6180;
+  --muted2: #8a93b0;
+  --red: #ff4545;
+  --gold: #f5c842;
+  --border: rgba(200,241,53,0.1);
+  --border2: rgba(255,255,255,0.06);
+}
+
+- { margin:0; padding:0; box-sizing:border-box; }
+  html, body { background-color: #050810 !important; color: #e8eaf0 !important; }
+  html { scroll-behavior:smooth; color-scheme: dark; }
+
+body {
+background: var(–bg);
+color: var(–white);
+font-family: ‘Geist’, sans-serif;
+font-weight: 300;
+overflow-x: hidden;
+}
+
+/* GRAIN */
+body::after {
+content:’’;
+position:fixed;
+inset:0;
+background-image:url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 512 512’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘n’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘0.75’ numOctaves=‘4’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23n)’ opacity=‘0.04’/%3E%3C/svg%3E”);
+pointer-events:none;
+z-index:9999;
+}
+
+/* ── TICKER ── */
+.ticker {
+background: var(–accent);
+color: var(–bg);
+padding: 10px 0;
+overflow: hidden;
+white-space: nowrap;
+font-size: 12px;
+font-weight: 600;
+letter-spacing: 0.08em;
+text-transform: uppercase;
+}
+
+.ticker-inner {
+display: inline-block;
+animation: ticker 30s linear infinite;
+}
+
+@keyframes ticker {
+from { transform: translateX(0); }
+to { transform: translateX(-50%); }
+}
+
+.ticker-sep { margin: 0 24px; opacity: 0.4; }
+
+/* ── NAV ── */
+nav {
+position: fixed;
+top: 32px;
+left: 50%;
+transform: translateX(-50%);
+z-index: 100;
+display: flex;
+align-items: center;
+gap: 32px;
+background: rgba(9,12,21,0.85);
+backdrop-filter: blur(20px);
+border: 1px solid var(–border2);
+border-radius: 100px;
+padding: 12px 28px;
+transition: all 0.3s;
+}
+
+.nav-logo {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 18px;
+color: var(–accent);
+letter-spacing: 0.1em;
+}
+
+.nav-links { display:flex; gap:24px; }
+.nav-links a {
+font-size: 13px;
+color: var(–muted2);
+text-decoration: none;
+transition: color 0.2s;
+}
+.nav-links a:hover { color: var(–white); }
+
+.nav-cta {
+background: var(–accent);
+color: var(–bg);
+font-size: 12px;
+font-weight: 600;
+padding: 8px 20px;
+border-radius: 100px;
+text-decoration: none;
+letter-spacing: 0.05em;
+transition: all 0.2s;
+white-space: nowrap;
+}
+.nav-cta:hover { background: #d8ff45; transform: scale(1.03); }
+
+/* ── HERO ── */
+.hero {
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+text-align: center;
+padding: 140px 24px 80px;
+position: relative;
+overflow: hidden;
+}
+
+/* BIG BG TEXT */
+.hero-bg-text {
+position: absolute;
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: clamp(100px, 18vw, 260px);
+color: transparent;
+-webkit-text-stroke: 1px rgba(200,241,53,0.06);
+letter-spacing: -0.02em;
+user-select: none;
+pointer-events: none;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+white-space: nowrap;
+line-height: 1;
+}
+
+/* RADIAL GLOW */
+.hero::before {
+content:’’;
+position:absolute;
+width:700px;
+height:700px;
+border-radius:50%;
+background:radial-gradient(circle, rgba(200,241,53,0.07) 0%, transparent 65%);
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+pointer-events:none;
+}
+
+.hero-eyebrow {
+display: inline-flex;
+align-items: center;
+gap: 10px;
+border: 1px solid rgba(200,241,53,0.3);
+background: rgba(200,241,53,0.05);
+border-radius: 100px;
+padding: 7px 18px;
+font-size: 11px;
+color: var(–accent);
+letter-spacing: 0.2em;
+text-transform: uppercase;
+margin-bottom: 32px;
+animation: fadeUp 0.7s ease both;
+}
+
+.hero-eyebrow span {
+width: 5px; height: 5px;
+border-radius: 50%;
+background: var(–accent);
+animation: pulse2 1.5s infinite;
+}
+
+@keyframes pulse2 { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.3;transform:scale(0.6)} }
+
+.hero h1 {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: clamp(56px, 10vw, 130px);
+line-height: 0.92;
+letter-spacing: -0.01em;
+margin-bottom: 8px;
+animation: fadeUp 0.7s 0.1s ease both;
+position: relative;
+}
+
+.hero h1 em {
+font-family: ‘Instrument Serif’, serif;
+font-style: italic;
+color: var(–accent);
+font-size: 0.85em;
+}
+
+.hero-sub {
+font-size: clamp(16px, 2vw, 20px);
+color: var(–muted2);
+max-width: 560px;
+line-height: 1.6;
+margin: 24px auto 40px;
+animation: fadeUp 0.7s 0.2s ease both;
+}
+
+.hero-sub strong { color: var(–white); font-weight: 500; }
+
+/* HERO CTA GROUP */
+.cta-group {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 14px;
+animation: fadeUp 0.7s 0.3s ease both;
+}
+
+.btn-primary {
+display: inline-flex;
+align-items: center;
+gap: 12px;
+background: var(–accent);
+color: var(–bg);
+font-size: 15px;
+font-weight: 600;
+padding: 18px 40px;
+border-radius: 6px;
+text-decoration: none;
+letter-spacing: 0.02em;
+transition: all 0.25s;
+position: relative;
+overflow: hidden;
+}
+
+.btn-primary::after {
+content:’’;
+position:absolute;
+inset:0;
+background:linear-gradient(135deg,rgba(255,255,255,0.15),transparent);
+opacity:0;
+transition:opacity 0.2s;
+}
+
+.btn-primary:hover { transform:translateY(-3px); box-shadow:0 20px 60px rgba(200,241,53,0.35); }
+.btn-primary:hover::after { opacity:1; }
+
+.btn-arrow {
+width: 28px; height: 28px;
+background: rgba(0,0,0,0.2);
+border-radius: 4px;
+display: flex; align-items:center; justify-content:center;
+}
+
+.cta-note {
+font-size: 12px;
+color: var(–muted);
+display: flex;
+align-items: center;
+gap: 8px;
+}
+
+.cta-note::before, .cta-note::after {
+content:’’;
+width:40px; height:1px;
+background: var(–border2);
+}
+
+/* SOCIAL PROOF BAR */
+.proof-bar {
+display: flex;
+justify-content: center;
+gap: 48px;
+flex-wrap: wrap;
+padding: 48px 24px;
+border-top: 1px solid var(–border2);
+border-bottom: 1px solid var(–border2);
+background: var(–bg2);
+position: relative;
+z-index: 1;
+animation: fadeUp 0.7s 0.5s ease both;
+}
+
+.proof-item { text-align:center; }
+
+.proof-num {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 42px;
+color: var(–accent);
+letter-spacing: 0.05em;
+display: block;
+line-height: 1;
+}
+
+.proof-label {
+font-size: 12px;
+color: var(–muted);
+text-transform: uppercase;
+letter-spacing: 0.12em;
+margin-top: 4px;
+}
+
+/* ── SECTIONS ── */
+.section { padding: 100px 24px; max-width: 1100px; margin: 0 auto; }
+.section-sm { padding: 80px 24px; max-width: 900px; margin: 0 auto; }
+
+.label {
+font-size: 10px;
+color: var(–accent);
+letter-spacing: 0.3em;
+text-transform: uppercase;
+font-weight: 600;
+margin-bottom: 16px;
+display: flex;
+align-items: center;
+gap: 12px;
+}
+.label::before { content:’’; width:24px; height:1px; background:var(–accent); }
+
+.big-title {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: clamp(40px, 6vw, 80px);
+line-height: 0.95;
+letter-spacing: -0.01em;
+margin-bottom: 24px;
+}
+
+.big-title .ital {
+font-family: ‘Instrument Serif’, serif;
+font-style: italic;
+color: var(–accent);
+}
+
+/* ── PROBLEM SECTION ── */
+.problem-bg {
+background: linear-gradient(180deg, var(–bg) 0%, var(–bg2) 50%, var(–bg) 100%);
+}
+
+.problem-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 2px;
+border: 2px solid rgba(255,69,69,0.2);
+border-radius: 14px;
+overflow: hidden;
+margin-top: 48px;
+}
+
+.problem-item {
+background: var(–surface);
+padding: 28px;
+display: flex;
+gap: 16px;
+align-items: flex-start;
+transition: background 0.2s;
+}
+
+.problem-item:hover { background: var(–surface2); }
+
+.problem-icon {
+font-size: 24px;
+flex-shrink: 0;
+margin-top: 2px;
+}
+
+.problem-text strong {
+display: block;
+font-size: 15px;
+font-weight: 500;
+margin-bottom: 6px;
+color: var(–white);
+}
+
+.problem-text p { font-size: 13px; color: var(–muted2); line-height: 1.6; }
+
+/* ── WHAT YOU GET ── */
+.modules-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 16px;
+margin-top: 48px;
+}
+
+.module-card {
+background: var(–surface);
+border: 1px solid var(–border2);
+border-radius: 12px;
+padding: 28px 24px;
+transition: all 0.3s;
+position: relative;
+overflow: hidden;
+}
+
+.module-card::before {
+content: ‘’;
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 2px;
+background: var(–accent);
+transform: scaleX(0);
+transform-origin: left;
+transition: transform 0.3s;
+}
+
+.module-card:hover {
+border-color: rgba(200,241,53,0.2);
+transform: translateY(-4px);
+box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.module-card:hover::before { transform: scaleX(1); }
+
+.module-num {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 48px;
+color: rgba(200,241,53,0.1);
+line-height: 1;
+margin-bottom: 12px;
+}
+
+.module-title {
+font-size: 15px;
+font-weight: 600;
+margin-bottom: 10px;
+color: var(–white);
+}
+
+.module-desc { font-size: 13px; color: var(–muted2); line-height: 1.6; }
+
+.module-badge {
+display: inline-block;
+margin-top: 14px;
+padding: 4px 10px;
+border-radius: 4px;
+font-size: 10px;
+letter-spacing: 0.1em;
+font-weight: 600;
+text-transform: uppercase;
+}
+
+.badge-new { background: rgba(200,241,53,0.1); color: var(–accent); }
+.badge-bonus { background: rgba(245,200,66,0.1); color: var(–gold); }
+.badge-exclu { background: rgba(123,97,255,0.1); color: #9b7fff; }
+
+/* ── STRATEGIES ── */
+.strat-row {
+display: grid;
+grid-template-columns: 80px 1fr 1fr 1fr;
+gap: 1px;
+background: var(–border2);
+border-radius: 10px;
+overflow: hidden;
+margin-bottom: 2px;
+}
+
+.strat-row.header { background: transparent; gap: 1px; }
+
+.strat-cell {
+background: var(–surface);
+padding: 16px 20px;
+font-size: 13px;
+display: flex;
+align-items: center;
+}
+
+.strat-row.header .strat-cell {
+background: transparent;
+font-size: 10px;
+color: var(–muted);
+letter-spacing: 0.15em;
+text-transform: uppercase;
+padding: 10px 20px;
+}
+
+.strat-name-cell {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 20px;
+color: var(–accent);
+letter-spacing: 0.05em;
+}
+
+/* ── TESTIMONIALS ── */
+.testimonials-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 16px;
+margin-top: 48px;
+}
+
+.testi-card {
+background: var(–surface);
+border: 1px solid var(–border2);
+border-radius: 12px;
+padding: 28px 24px;
+position: relative;
+}
+
+.testi-quote {
+font-size: 40px;
+color: var(–accent);
+line-height: 1;
+font-family: ‘Instrument Serif’, serif;
+margin-bottom: 12px;
+opacity: 0.5;
+}
+
+.testi-text { font-size: 14px; color: var(–muted2); line-height: 1.7; margin-bottom: 20px; }
+.testi-text strong { color: var(–white); font-weight: 500; }
+
+.testi-author {
+display: flex;
+align-items: center;
+gap: 12px;
+}
+
+.testi-avatar {
+width: 38px; height: 38px;
+border-radius: 50%;
+background: linear-gradient(135deg, var(–accent), #00e5a0);
+display: flex; align-items:center; justify-content:center;
+font-weight: 700; font-size: 14px; color: var(–bg);
+flex-shrink: 0;
+}
+
+.testi-name { font-size: 14px; font-weight: 500; }
+.testi-role { font-size: 11px; color: var(–muted); }
+
+.stars { color: var(–gold); font-size: 12px; margin-bottom: 14px; letter-spacing: 2px; }
+
+/* ── PRICING ── */
+.pricing-bg {
+background: var(–bg2);
+padding: 100px 24px;
+}
+
+.pricing-inner { max-width: 900px; margin: 0 auto; }
+
+.pricing-grid {
+display: grid;
+grid-template-columns: 1fr 1.1fr;
+gap: 20px;
+margin-top: 48px;
+}
+
+.price-card {
+background: var(–surface);
+border: 1px solid var(–border2);
+border-radius: 16px;
+padding: 36px 32px;
+position: relative;
+transition: all 0.3s;
+}
+
+.price-card.featured {
+border-color: var(–accent);
+background: linear-gradient(135deg, rgba(200,241,53,0.05) 0%, var(–surface) 50%);
+box-shadow: 0 0 60px rgba(200,241,53,0.08);
+}
+
+.featured-badge {
+position: absolute;
+top: -12px;
+left: 50%;
+transform: translateX(-50%);
+background: var(–accent);
+color: var(–bg);
+font-size: 10px;
+font-weight: 700;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+padding: 5px 18px;
+border-radius: 100px;
+white-space: nowrap;
+}
+
+.price-name {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 28px;
+letter-spacing: 0.05em;
+margin-bottom: 6px;
+}
+
+.price-tagline { font-size: 13px; color: var(–muted2); margin-bottom: 28px; }
+
+.price-amount {
+display: flex;
+align-items: flex-end;
+gap: 6px;
+margin-bottom: 8px;
+}
+
+.price-currency { font-size: 20px; color: var(–muted2); margin-bottom: 6px; }
+.price-num {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 72px;
+line-height: 1;
+color: var(–white);
+letter-spacing: -0.02em;
+}
+
+.price-card.featured .price-num { color: var(–accent); }
+
+.price-old {
+font-size: 16px;
+color: var(–muted);
+text-decoration: line-through;
+margin-bottom: 28px;
+}
+
+.price-divider {
+border: none;
+height: 1px;
+background: var(–border2);
+margin: 24px 0;
+}
+
+.price-features { list-style: none; margin-bottom: 32px; }
+.price-features li {
+font-size: 14px;
+color: var(–muted2);
+padding: 8px 0;
+display: flex;
+gap: 12px;
+align-items: flex-start;
+border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+
+.price-features li:last-child { border-bottom: none; }
+
+.check { color: var(–accent); font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+.cross { color: var(–muted); font-size: 14px; flex-shrink: 0; }
+
+.btn-buy {
+display: block;
+text-align: center;
+background: var(–surface2);
+border: 1px solid var(–border2);
+color: var(–white);
+font-size: 14px;
+font-weight: 600;
+padding: 16px;
+border-radius: 8px;
+text-decoration: none;
+transition: all 0.2s;
+letter-spacing: 0.03em;
+}
+
+.btn-buy:hover { border-color: rgba(200,241,53,0.3); background: rgba(200,241,53,0.05); }
+
+.price-card.featured .btn-buy {
+background: var(–accent);
+border-color: var(–accent);
+color: var(–bg);
+}
+
+.price-card.featured .btn-buy:hover {
+background: #d8ff45;
+box-shadow: 0 10px 40px rgba(200,241,53,0.3);
+transform: translateY(-2px);
+}
+
+/* ── GUARANTEE ── */
+.guarantee {
+display: flex;
+gap: 32px;
+align-items: center;
+background: var(–surface);
+border: 1px solid var(–border2);
+border-radius: 14px;
+padding: 36px 40px;
+margin-top: 24px;
+}
+
+.guarantee-icon { font-size: 56px; flex-shrink:0; }
+
+.guarantee-title {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 28px;
+letter-spacing: 0.05em;
+color: var(–accent);
+margin-bottom: 8px;
+}
+
+.guarantee-text { font-size: 14px; color: var(–muted2); line-height: 1.7; }
+
+/* ── FAQ ── */
+.faq-list { margin-top: 48px; }
+
+.faq-item {
+border-bottom: 1px solid var(–border2);
+overflow: hidden;
+}
+
+.faq-q {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 22px 0;
+cursor: pointer;
+font-size: 15px;
+font-weight: 500;
+transition: color 0.2s;
+user-select: none;
+gap: 24px;
+}
+
+.faq-q:hover { color: var(–accent); }
+
+.faq-icon {
+width: 28px; height: 28px;
+border-radius: 50%;
+border: 1px solid var(–border2);
+display: flex; align-items:center; justify-content:center;
+font-size: 16px;
+color: var(–accent);
+flex-shrink: 0;
+transition: all 0.3s;
+}
+
+.faq-item.open .faq-icon { transform: rotate(45deg); background: var(–accent-dim); }
+
+.faq-a {
+font-size: 14px;
+color: var(–muted2);
+line-height: 1.7;
+max-height: 0;
+overflow: hidden;
+transition: max-height 0.4s ease, padding 0.3s;
+}
+
+.faq-item.open .faq-a { max-height: 300px; padding-bottom: 22px; }
+
+/* ── URGENCY BANNER ── */
+.urgency {
+background: linear-gradient(135deg, rgba(200,241,53,0.08), rgba(200,241,53,0.03));
+border: 1px solid rgba(200,241,53,0.2);
+border-radius: 14px;
+padding: 36px 40px;
+text-align: center;
+margin: 48px 0;
+}
+
+.urgency-title {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 36px;
+color: var(–accent);
+letter-spacing: 0.05em;
+margin-bottom: 12px;
+}
+
+.urgency-text { font-size: 15px; color: var(–muted2); max-width: 500px; margin: 0 auto 24px; }
+
+/* COUNTDOWN */
+.countdown {
+display: flex;
+justify-content: center;
+gap: 16px;
+margin-bottom: 28px;
+}
+
+.count-block {
+background: var(–surface);
+border: 1px solid var(–border2);
+border-radius: 10px;
+padding: 14px 20px;
+text-align: center;
+min-width: 70px;
+}
+
+.count-num {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 40px;
+color: var(–accent);
+line-height: 1;
+display: block;
+}
+
+.count-label { font-size: 10px; color: var(–muted); letter-spacing: 0.15em; text-transform: uppercase; }
+
+/* ── FINAL CTA ── */
+.final-cta {
+text-align: center;
+padding: 120px 24px;
+position: relative;
+overflow: hidden;
+}
+
+.final-cta::before {
+content:’’;
+position:absolute;
+width:800px; height:800px;
+border-radius:50%;
+background:radial-gradient(circle, rgba(200,241,53,0.06) 0%, transparent 65%);
+top:50%; left:50%;
+transform:translate(-50%,-50%);
+}
+
+.final-bg-text {
+position:absolute;
+font-family:‘Bebas Neue’,sans-serif;
+font-size:clamp(120px,20vw,280px);
+color:transparent;
+-webkit-text-stroke:1px rgba(200,241,53,0.04);
+letter-spacing:-0.03em;
+top:50%; left:50%;
+transform:translate(-50%,-50%);
+white-space:nowrap;
+pointer-events:none;
+user-select:none;
+}
+
+.final-title {
+font-family:‘Bebas Neue’,sans-serif;
+font-size:clamp(48px,8vw,100px);
+letter-spacing:-0.01em;
+line-height:0.95;
+position:relative;
+z-index:1;
+margin-bottom:24px;
+}
+
+.final-title .ital {
+font-family:‘Instrument Serif’,serif;
+font-style:italic;
+color:var(–accent);
+}
+
+.final-sub {
+font-size:17px;
+color:var(–muted2);
+max-width:480px;
+margin:0 auto 40px;
+line-height:1.6;
+position:relative;
+z-index:1;
+}
+
+/* FOOTER */
+footer {
+background: var(–bg2);
+border-top: 1px solid var(–border2);
+padding: 40px 24px;
+text-align: center;
+}
+
+footer p { font-size: 12px; color: var(–muted); line-height: 1.8; }
+footer strong { color: var(–muted2); }
+
+/* ── UTILITIES ── */
+@keyframes fadeUp {
+from { opacity:0; transform:translateY(24px); }
+to { opacity:1; transform:translateY(0); }
+}
+
+.reveal {
+opacity:0;
+transform:translateY(32px);
+transition:opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+.text-accent { color: var(–accent); }
+.text-muted { color: var(–muted2); }
+
+/* ── RESPONSIVE TABLET ── */
+@media (max-width:900px) {
+.modules-grid { grid-template-columns: repeat(2,1fr); }
+.testimonials-grid { grid-template-columns: repeat(2,1fr); }
+}
+
+/* ── RESPONSIVE MOBILE ── */
+@media (max-width:768px) {
+
+/* NAV */
+nav {
+top: 12px;
+gap: 10px;
+padding: 10px 18px;
+border-radius: 50px;
+width: calc(100% - 32px);
+justify-content: space-between;
+}
+.nav-links { display:none; }
+.nav-logo { font-size: 15px; }
+.nav-cta { font-size: 11px; padding: 7px 14px; }
+
+/* HERO */
+.hero { padding: 120px 20px 60px; }
+.hero h1 { font-size: clamp(48px, 14vw, 72px); }
+.hero-sub { font-size: 15px; margin-bottom: 32px; }
+.hero-bg-text { font-size: clamp(70px, 22vw, 120px); opacity: 0.5; }
+.btn-primary { font-size: 14px; padding: 15px 24px; width: 100%; justify-content: center; }
+.cta-note { font-size: 11px; text-align: center; }
+.cta-note::before, .cta-note::after { display: none; }
+
+/* PROOF BAR */
+.proof-bar { gap: 20px; padding: 32px 20px; }
+.proof-num { font-size: 30px; }
+.proof-label { font-size: 10px; }
+
+/* SECTIONS */
+.section { padding: 60px 20px; }
+.section-sm { padding: 60px 20px; }
+.big-title { font-size: clamp(34px, 10vw, 52px); }
+.label { font-size: 9px; }
+
+/* GRIDS → 1 COLONNE */
+.problem-grid,
+.modules-grid,
+.testimonials-grid,
+.pricing-grid { grid-template-columns: 1fr; }
+
+/* STRAT TABLE */
+.strat-row { grid-template-columns: 70px 1fr 1fr; }
+.strat-row .strat-cell:last-child { display: none; }
+.strat-row.header .strat-cell:last-child { display: none; }
+
+/* GUARANTEE / TELEGRAM BOX */
+.guarantee { flex-direction: column; text-align: center; gap: 16px; padding: 24px 20px; }
+.guarantee-icon { font-size: 40px; }
+.guarantee-title { font-size: 22px; }
+
+/* COUNTDOWN */
+.countdown { gap: 8px; }
+.count-block { padding: 10px 14px; min-width: 56px; }
+.count-num { font-size: 32px; }
+
+/* URGENCY */
+.urgency { padding: 24px 20px; }
+.urgency-title { font-size: 26px; }
+
+/* PRICING */
+.pricing-bg { padding: 60px 20px; }
+.price-num { font-size: 56px; }
+.price-card { padding: 28px 20px; }
+.featured-badge { font-size: 9px; padding: 4px 14px; }
+
+/* FAQ */
+.faq-q { font-size: 14px; padding: 18px 0; }
+.faq-a { font-size: 13px; }
+
+/* FINAL CTA */
+.final-cta { padding: 80px 20px; }
+.final-title { font-size: clamp(40px, 12vw, 64px); }
+.final-sub { font-size: 15px; }
+.final-bg-text { display: none; }
+
+/* STABLEVPS SECTION */
+.stablevps-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
+.stablevps-metrics { display: none; }
+
+/* POUR QUI */
+.pourqui-grid { grid-template-columns: 1fr !important; }
+.pourqui-grid > div:first-child { border-radius: 14px 14px 0 0 !important; }
+.pourqui-grid > div:last-child { border-radius: 0 0 14px 14px !important; }
+
+/* LOGOS BAR */
+.logos-bar { gap: 20px !important; }
+.logos-sep { display: none; }
+
+/* LOGICIELS GRID */
+.logiciels-grid { grid-template-columns: 1fr !important; }
+
+/* APERÇU PDF */
+.pdf-grid { grid-template-columns: 1fr !important; }
+.pdf-grid > div:nth-child(2),
+.pdf-grid > div:nth-child(3) { display: none; }
+
+/* CALCULATRICE */
+.calc-row { grid-template-columns: 1fr auto !important; }
+.calc-row > span:nth-child(2) { display: none; }
+.calc-header > span:nth-child(2) { display: none; }
+
+/* BOUTON FLOTTANT */
+#tg-float { bottom: 16px; right: 16px; }
+#tg-float > div:first-child { display: none !important; }
+
+/* COMPTEUR */
+}
+
+/* ── TRÈS PETIT ÉCRAN ── */
+@media (max-width: 380px) {
+.hero h1 { font-size: 42px; }
+.big-title { font-size: 30px; }
+.proof-bar { grid-template-columns: 1fr 1fr; display: grid; }
+nav { padding: 8px 14px; }
+}
+</style>
+
+</head>
+<body>
+
+<!-- TICKER -->
+
+<div class="ticker">
+  <span class="ticker-inner">
+    ⚡ PREMIÈRE FORMATION EN FRANCE&nbsp;<span class="ticker-sep">·</span>&nbsp;ARBITRAGE DE LATENCE&nbsp;<span class="ticker-sep">·</span>&nbsp;STRATÉGIES 1-LEG / LOCK / 2-LEG&nbsp;<span class="ticker-sep">·</span>&nbsp;DAAS & WESTERNPIPS 7 & MADEO HFT&nbsp;<span class="ticker-sep">·</span>&nbsp;ACHAT & LOCATION DE LOGICIELS&nbsp;<span class="ticker-sep">·</span>&nbsp;VPS OPTIMISÉ ARBITRAGE — STABLEVPS.EU&nbsp;<span class="ticker-sep">·</span>&nbsp;🔥 PRIX PROMO — 100 PREMIERS CLIENTS UNIQUEMENT&nbsp;<span class="ticker-sep">·</span>&nbsp;⚡ PREMIÈRE FORMATION EN FRANCE&nbsp;<span class="ticker-sep">·</span>&nbsp;ARBITRAGE DE LATENCE&nbsp;<span class="ticker-sep">·</span>&nbsp;STRATÉGIES 1-LEG / LOCK / 2-LEG&nbsp;<span class="ticker-sep">·</span>&nbsp;DAAS & WESTERNPIPS 7 & MADEO HFT&nbsp;<span class="ticker-sep">·</span>&nbsp;ACHAT & LOCATION DE LOGICIELS&nbsp;<span class="ticker-sep">·</span>&nbsp;VPS OPTIMISÉ ARBITRAGE — STABLEVPS.EU&nbsp;<span class="ticker-sep">·</span>&nbsp;🔥 PRIX PROMO — 100 PREMIERS CLIENTS UNIQUEMENT&nbsp;<span class="ticker-sep">·</span>&nbsp;
+  </span>
+</div>
+
+<!-- NAV -->
+
+<nav>
+  <span class="nav-logo">ARBITRAGE·VAULT</span>
+  <div class="nav-links">
+    <span>Contenu</span>
+    <span>Stratégies</span>
+    <span>Avis</span>
+    <span>Tarifs</span>
+    <span>Logiciels</span>
+    <span>StableVPS</span>
+    <span>FAQ</span>
+  </div>
+  <span class="nav-cta" style="cursor:default;">Arbitrage Vault</span>
+</nav>
+
+<!-- ══════════════ HERO ══════════════ -->
+
+<section class="hero" id="hero">
+  <div class="hero-bg-text">LATENCY</div>
+
+  <div class="hero-eyebrow">
+    <span></span>
+    🇫🇷 Première en France · 100 places au tarif promo
+  </div>
+
+  <h1>
+    L'ARBITRAGE<br>
+    <em>de Latence</em><br>
+    DÉCRYPTÉ
+  </h1>
+
+  <p class="hero-sub">
+    La seule formation qui t'explique <strong>vraiment</strong> comment exploiter les inefficiences de vitesse des marchés — de la théorie aux réglages exacts, jusqu'au premier profit.
+  </p>
+
+  <div class="cta-group">
+    <div class="btn-primary" style="cursor:pointer;" onclick="document.getElementById('tarifs').scrollIntoView({behavior:'smooth'})">
+      Je veux accéder à la formation
+      <span class="btn-arrow">→</span>
+    </div>
+    <p class="cta-note">Accès immédiat · Prix promo 100 premiers · Paiement sécurisé</p>
+  </div>
+</section>
+
+<!-- PROOF BAR -->
+
+<div class="proof-bar reveal">
+  <div class="proof-item">
+    <span class="proof-num">5 000+</span>
+    <span class="proof-label">Membres de la communauté</span>
+  </div>
+  <div class="proof-item">
+    <span class="proof-num">35</span>
+    <span class="proof-label">Modules complets</span>
+  </div>
+  <div class="proof-item">
+    <span class="proof-num">6</span>
+    <span class="proof-label">Stratégies détaillées</span>
+  </div>
+  <div class="proof-item">
+    <span class="proof-num">∞</span>
+    <span class="proof-label">Accès à vie</span>
+  </div>
+</div>
+
+<!-- ══════════════ PROBLEM ══════════════ -->
+
+<section class="problem-bg" id="probleme">
+  <div class="section">
+    <div class="reveal">
+      <div class="label">Le constat</div>
+      <h2 class="big-title">Tu perds du temps<br>avec les <em>mauvaises</em><br>méthodes</h2>
+      <p style="font-size:16px;color:var(--muted2);max-width:560px;line-height:1.7;margin-bottom:0;">
+        La majorité des traders retail utilisent des stratégies où ils sont structurellement désavantagés. L'arbitrage de latence, c'est enfin jouer avec un <strong style="color:var(--white)">avantage mathématique réel</strong>.
+      </p>
+    </div>
+
+```
+<div class="problem-grid reveal">
+  <div class="problem-item">
+    <div class="problem-icon">😤</div>
+    <div class="problem-text">
+      <strong>Tu suis des signaux sans comprendre pourquoi</strong>
+      <p>Tu copy-trades ou tu suis des alertes, mais tu ne contrôles rien. Si la source disparaît, tu es perdu.</p>
+    </div>
+  </div>
+  <div class="problem-item">
+    <div class="problem-icon">📉</div>
+    <div class="problem-text">
+      <strong>Ton win rate est aléatoire</strong>
+      <p>Sans edge systématique, chaque trade est un pari. L'arbitrage change ça : tu entres avec une info que le broker n'a pas encore.</p>
+    </div>
+  </div>
+  <div class="problem-item">
+    <div class="problem-icon">🕵️</div>
+    <div class="problem-text">
+      <strong>Tu entends parler d'arbitrage mais personne n'explique vraiment</strong>
+      <p>YouTube, forums, Telegram — beaucoup de bruit, peu de substance. Les vrais réglages ne se partagent pas gratuitement.</p>
+    </div>
+  </div>
+  <div class="problem-item">
+    <div class="problem-icon">💸</div>
+    <div class="problem-text">
+      <strong>Tu as essayé des "robots" qui ne fonctionnent plus</strong>
+      <p>Les EAs génériques sont grillés. L'arbitrage de latence bien configuré reste viable — à condition de savoir comment faire.</p>
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- ══════════════ CONTENU ══════════════ -->
+
+<section id="contenu">
+  <div class="section">
+    <div class="reveal">
+      <div class="label">Ce que tu vas apprendre</div>
+      <h2 class="big-title">35 modules.<br><em>Rien d'omis.</em></h2>
+      <p style="font-size:16px;color:var(--muted2);max-width:600px;line-height:1.7;">
+        35 modules construits dans l'ordre logique — du concept de base au trader opérationnel. Guides de démarrage pas à pas, Starter Pack avec réglages exacts, et bien plus encore.
+      </p>
+    </div>
+
+```
+<div class="modules-grid reveal">
+  <div class="module-card">
+    <div class="module-num">01</div>
+    <div class="module-title">C'est quoi l'arbitrage ?</div>
+    <div class="module-desc">La définition claire, les types d'arbitrage, pourquoi l'arbitrage de latence est différent de tout ce que tu connais.</div>
+  </div>
+  <div class="module-card">
+    <div class="module-num">02</div>
+    <div class="module-title">Comprendre la latence</div>
+    <div class="module-desc">Latence source vs exécution, comment la mesurer, ce que chercher chez un broker cible.</div>
+    <span class="module-badge badge-new">FONDAMENTAL</span>
+  </div>
+  <div class="module-card">
+    <div class="module-num">03</div>
+    <div class="module-title">Histoire & origines</div>
+    <div class="module-desc">Comment cette stratégie est née en salle de marché, comment elle s'est démocratisée et où on en est aujourd'hui.</div>
+  </div>
+
+  <!-- Modules verrouillés -->
+  <div class="module-card" style="grid-column:1/-1;background:rgba(200,241,53,0.03);border:1px dashed rgba(200,241,53,0.2);border-radius:10px;padding:36px;text-align:center;">
+    <div style="font-size:32px;margin-bottom:14px;">🔒</div>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--accent);letter-spacing:0.05em;margin-bottom:10px;">32 MODULES SUPPLÉMENTAIRES</div>
+    <p style="font-size:14px;color:var(--muted2);max-width:520px;margin:0 auto 22px;line-height:1.7;">
+      Stratégies avancées, News Trading, FIX API, Co-localisation, Prop Firms, Psychologie, Crypto, Starter Pack réglages exacts... Le contenu complet est réservé aux membres.
+    </p>
+    <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-bottom:24px;">
+      <span style="background:rgba(200,241,53,0.08);border:1px solid rgba(200,241,53,0.2);border-radius:20px;padding:5px 14px;font-size:12px;color:var(--muted2);">🎯 Starter Pack réglages exacts</span>
+      <span style="background:rgba(200,241,53,0.08);border:1px solid rgba(200,241,53,0.2);border-radius:20px;padding:5px 14px;font-size:12px;color:var(--muted2);">🚀 Guides démarrage WP7 & DAAS</span>
+      <span style="background:rgba(200,241,53,0.08);border:1px solid rgba(200,241,53,0.2);border-radius:20px;padding:5px 14px;font-size:12px;color:var(--muted2);">📊 Prop Firms 2026</span>
+      <span style="background:rgba(200,241,53,0.08);border:1px solid rgba(200,241,53,0.2);border-radius:20px;padding:5px 14px;font-size:12px;color:var(--muted2);">🔐 Stratégies hybrides & IA</span>
+      <span style="background:rgba(200,241,53,0.08);border:1px solid rgba(200,241,53,0.2);border-radius:20px;padding:5px 14px;font-size:12px;color:var(--muted2);">₿ Arbitrage Crypto 24h/24</span>
+      <span style="background:rgba(200,241,53,0.08);border:1px solid rgba(200,241,53,0.2);border-radius:20px;padding:5px 14px;font-size:12px;color:var(--muted2);">⚡ 6 guides stratégies complets (1-Leg, Lock, BrightDuo...)</span>
+    </div>
+    <div onclick="openPayment()" style="display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--bg);padding:13px 30px;border-radius:6px;font-weight:700;font-size:14px;cursor:pointer;letter-spacing:0.03em;">
+      Débloquer les 35 modules →
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- ══════════════ STRATÉGIES ══════════════ -->
+
+<section id="strategies" style="background:var(--bg2);padding:100px 0;">
+  <div class="section">
+    <div class="reveal">
+      <div class="label">Comparatif des stratégies</div>
+      <h2 class="big-title">6 stratégies.<br><em>1 formation.</em></h2>
+    </div>
+
+```
+<div class="reveal" style="margin-top:48px;">
+  <div class="strat-row header">
+    <div class="strat-cell"></div>
+    <div class="strat-cell">Brokers requis</div>
+    <div class="strat-cell">Difficulté</div>
+    <div class="strat-cell">Discrétion</div>
+  </div>
+
+  <div class="strat-row">
+    <div class="strat-cell strat-name-cell">1-LEG</div>
+    <div class="strat-cell" style="color:var(--muted2)">1 seul</div>
+    <div class="strat-cell"><span style="color:var(--accent)">● Facile</span></div>
+    <div class="strat-cell"><span style="color:var(--gold)">● Moyenne</span></div>
+  </div>
+  <div class="strat-row">
+    <div class="strat-cell strat-name-cell">LOCKCL1</div>
+    <div class="strat-cell" style="color:var(--muted2)">1 seul</div>
+    <div class="strat-cell"><span style="color:var(--gold)">● Moyen</span></div>
+    <div class="strat-cell"><span style="color:var(--accent)">● Bonne</span></div>
+  </div>
+  <div class="strat-row">
+    <div class="strat-cell strat-name-cell">LOCKCL2</div>
+    <div class="strat-cell" style="color:var(--muted2)">1 seul</div>
+    <div class="strat-cell"><span style="color:var(--gold)">● Moyen+</span></div>
+    <div class="strat-cell"><span style="color:var(--accent)">● Très bonne</span></div>
+  </div>
+  <div class="strat-row">
+    <div class="strat-cell strat-name-cell">BRIGHTDUO</div>
+    <div class="strat-cell" style="color:var(--muted2)">2 requis</div>
+    <div class="strat-cell"><span style="color:#ff8c42)">● Avancé</span></div>
+    <div class="strat-cell"><span style="color:var(--accent)">● Excellente</span></div>
+  </div>
+  <div class="strat-row">
+    <div class="strat-cell strat-name-cell">2-LEG</div>
+    <div class="strat-cell" style="color:var(--muted2)">2 requis</div>
+    <div class="strat-cell"><span style="color:var(--red)">● Avancé</span></div>
+    <div class="strat-cell"><span style="color:var(--gold)">● Bonne</span></div>
+  </div>
+</div>
+
+<div class="urgency reveal" style="margin-top:40px;">
+  <div class="urgency-title">Chaque stratégie est décortiquée avec ses paramètres, sa logique et ses cas d'usage concrets</div>
+  <p style="font-size:14px;color:var(--muted2);max-width:500px;margin:0 auto;">La formation t'explique la logique derrière chaque paramètre — à toi de les calibrer sur ton broker cible.</p>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- ══════════════ TESTIMONIALS ══════════════ -->
+
+<section id="avis">
+  <div class="section">
+    <div class="reveal">
+      <div class="label">Ils ont testé avant toi</div>
+      <h2 class="big-title">La communauté<br><em>parle.</em></h2>
+    </div>
+
+```
+<div class="testimonials-grid reveal">
+  <div class="testi-card">
+    <div class="stars">★★★★★</div>
+    <div class="testi-quote">"</div>
+    <p class="testi-text">J'avais entendu parler d'arb de latence pendant 2 ans sans jamais comprendre vraiment. Cette formation m'a <strong>tout expliqué en quelques heures</strong>. Premier compte réel ouvert la semaine suivante.</p>
+    <div class="testi-author">
+      <div class="testi-avatar">KL</div>
+      <div>
+        <div class="testi-name">Kevin L.</div>
+        <div class="testi-role">Trader Forex, 3 ans d'expérience</div>
+      </div>
+    </div>
+  </div>
+  <div class="testi-card" style="border-color:rgba(200,241,53,0.15);">
+    <div class="stars">★★★★★</div>
+    <div class="testi-quote">"</div>
+    <p class="testi-text">Le module sur la discrétion vaut à lui seul le prix de la formation. J'ai déjà eu des comptes fermés avant — <strong>maintenant je sais exactement pourquoi et comment l'éviter.</strong></p>
+    <div class="testi-author">
+      <div class="testi-avatar" style="background:linear-gradient(135deg,#7b61ff,#c8f135);">SR</div>
+      <div>
+        <div class="testi-name">Sofia R.</div>
+        <div class="testi-role">Ancienne prop firm trader</div>
+      </div>
+    </div>
+  </div>
+  <div class="testi-card">
+    <div class="stars">★★★★★</div>
+    <div class="testi-quote">"</div>
+    <p class="testi-text">Le module sur les réglages m'a fait <strong>économiser des semaines de galère</strong>. Chaque paramètre est expliqué avec sa logique — j'ai enfin compris ce que je faisais.</p>
+    <div class="testi-author">
+      <div class="testi-avatar" style="background:linear-gradient(135deg,#f5c842,#ff6b35);">MB</div>
+      <div>
+        <div class="testi-name">Marc B.</div>
+        <div class="testi-role">Ingénieur & trader indépendant</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center;margin-top:40px;padding:28px;background:var(--surface);border-radius:12px;border:1px solid var(--border2);" class="reveal">
+  <p style="font-size:13px;color:var(--muted2);">Ces avis proviennent de membres de la communauté ayant accédé à la formation en avant-première. Les résultats varient selon l'investissement personnel de chacun.</p>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- ══════════════ URGENCY ══════════════ -->
+
+<div style="background:var(--bg2);padding:60px 24px;">
+  <div style="max-width:700px;margin:0 auto;" class="reveal">
+    <div class="urgency">
+      <div class="urgency-title">🇫🇷 PREMIÈRE EN FRANCE — 100 PLACES AU TARIF PROMO</div>
+      <p class="urgency-text">Une méthode de trading qui n'avait <strong>jamais été expliquée en France</strong> avant aujourd'hui. Nous sommes les premiers. Ce prix ne sera plus disponible après les 100 premiers clients.</p>
+      <div class="countdown">
+        <div class="count-block">
+          <span class="count-num" id="c-h">23</span>
+          <span class="count-label">Heures</span>
+        </div>
+        <div class="count-block">
+          <span class="count-num" id="c-m">47</span>
+          <span class="count-label">Minutes</span>
+        </div>
+        <div class="count-block">
+          <span class="count-num" id="c-s">12</span>
+          <span class="count-label">Secondes</span>
+        </div>
+      </div>
+      <div class="btn-primary" style="display:inline-flex;cursor:pointer;" onclick="document.getElementById('tarifs').scrollIntoView({behavior:'smooth'})">
+        Rejoindre les 100 premiers
+        <span class="btn-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ BANNIÈRE FRANCE FIRST ══════════════ -->
+
+<div style="background:linear-gradient(135deg,rgba(200,241,53,0.07),rgba(200,241,53,0.03));border-top:1px solid rgba(200,241,53,0.15);border-bottom:1px solid rgba(200,241,53,0.15);padding:48px 24px;">
+  <div style="max-width:760px;margin:0 auto;text-align:center;" class="reveal">
+    <div style="font-size:36px;margin-bottom:16px;">🇫🇷</div>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,5vw,52px);color:var(--accent);letter-spacing:0.03em;line-height:1;margin-bottom:16px;">PREMIÈRE FORMATION EN FRANCE<br>SUR L'ARBITRAGE DE LATENCE</div>
+    <p style="font-size:15px;color:var(--muted2);max-width:580px;margin:0 auto 24px;line-height:1.7;">Cette méthode de trading n'avait <strong style="color:var(--white);">jamais été expliquée publiquement en France</strong> avant aujourd'hui. Pendant des années, seuls quelques initiés la pratiquaient en silence. Nous sommes les premiers à la rendre accessible.</p>
+    <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
+      <div style="background:rgba(200,241,53,0.06);border:1px solid rgba(200,241,53,0.2);border-radius:8px;padding:12px 20px;font-size:13px;color:var(--muted2);display:flex;align-items:center;gap:8px;">
+        <span style="color:var(--accent);">✓</span> Pour les <strong style="color:var(--white);">vrais motivés</strong>
+      </div>
+      <div style="background:rgba(200,241,53,0.06);border:1px solid rgba(200,241,53,0.2);border-radius:8px;padding:12px 20px;font-size:13px;color:var(--muted2);display:flex;align-items:center;gap:8px;">
+        <span style="color:var(--accent);">✓</span> Pour ceux qui veulent un <strong style="color:var(--white);">edge réel</strong>
+      </div>
+      <div style="background:rgba(200,241,53,0.06);border:1px solid rgba(200,241,53,0.2);border-radius:8px;padding:12px 20px;font-size:13px;color:var(--muted2);display:flex;align-items:center;gap:8px;">
+        <span style="color:var(--accent);">✓</span> <strong style="color:var(--white);">100 clients</strong> au tarif promo — pas un de plus
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ PRICING ══════════════ -->
+
+<section class="pricing-bg" id="tarifs">
+  <div class="pricing-inner">
+    <div class="reveal" style="text-align:center;">
+      <div class="label" style="justify-content:center;">🇫🇷 Première en France · Offre exclusive</div>
+      <h2 class="big-title" style="text-align:center;">Prix promo<br><em>100 premiers.</em></h2>
+      <p style="font-size:16px;color:var(--muted2);max-width:560px;margin:0 auto;">Ce tarif est <strong style="color:var(--white);">réservé aux 100 premiers clients uniquement</strong>. Passé ce cap, le prix augmentera définitivement. Une offre exclusive pour ceux qui veulent <em style="color:var(--accent);">vraiment</em> apprendre.</p>
+    </div>
+
+```
+<div class="reveal" style="max-width:520px;margin:48px auto 0;">
+
+  <!-- ELITE SEUL -->
+  <div class="price-card featured">
+    <div class="featured-badge">🔥 PRIX PROMO — 100 PREMIERS CLIENTS</div>
+    <div class="price-name">Elite Pack</div>
+    <div class="price-tagline">Offre exclusive · Tarif promotionnel limité aux 100 premiers</div>
+    <div class="price-amount">
+      <span class="price-currency">€</span>
+      <span class="price-num">999</span>
+    </div>
+    <div class="price-old">Prix définitif après les 100 premiers : 1 497€</div>
+    <hr class="price-divider">
+    <ul class="price-features">
+      <li><span class="check">✓</span> Formation complète — 35 modules</li>
+      <li><span class="check">✓</span> Accès PDF téléchargeable (300+ pages)</li>
+      <li><span class="check">✓</span> Tableau comparatif des stratégies</li>
+      <li><span class="check">✓</span> Mises à jour futures incluses à vie</li>
+      <li><span class="check">✓</span> <strong>Checklist de démarrage VPS/Broker/Config</strong></li>
+      <li><span class="check">✓</span> <strong>Support prioritaire 48h</strong></li>
+    </ul>
+    <button onclick="openPayment()" class="btn-buy" style="cursor:pointer;border:none;width:100%;font-size:15px;">💎 Payer en USDT TRC-20 — 999 USDT</button>
+    <p style="text-align:center;font-size:11px;color:var(--muted);margin-top:12px;">Paiement direct · Sans intermédiaire · Accès sous 24h max</p>
+  </div>
+</div>
+
+<!-- ══ MODAL PAIEMENT CRYPTO ══ -->
+<div id="pay-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:2000;align-items:center;justify-content:center;padding:16px;overflow-y:auto;">
+  <div style="background:#0e1220;border:1px solid rgba(200,241,53,0.25);border-radius:20px;max-width:460px;width:100%;padding:32px 28px;position:relative;box-shadow:0 40px 100px rgba(0,0,0,0.7);margin:auto;">
+
+    <!-- HEADER : RETOUR + TITRE + CLOSE -->
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+      <button onclick="closePayment()" style="display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);color:var(--muted2);font-size:13px;padding:7px 14px;border-radius:8px;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='rgba(255,255,255,0.05)'">
+        ← Retour
+      </button>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--accent);letter-spacing:0.08em;">PAIEMENT USDT TRC-20</div>
+      <button onclick="closePayment()" style="background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;line-height:1;padding:4px;">✕</button>
+    </div>
+
+    <!-- SOUS-TITRE -->
+    <div style="text-align:center;margin-bottom:20px;">
+      <div style="font-size:13px;color:var(--muted2);">Envoie exactement <strong style="color:var(--white);">999 USDT</strong> sur le réseau <strong style="color:var(--accent);">TRC-20 (Tron)</strong></div>
+    </div>
+
+    <!-- QR CODE -->
+    <div style="text-align:center;margin-bottom:20px;">
+      <div style="display:inline-block;background:white;padding:14px;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,0.3);">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANwAAADcCAYAAAAbWs+BAABEzElEQVR42u19e3wV1bX/d877lTcJJIQA8ogCKhXEC3qrUEXrR6u34gN5qNiiVT9URRQfoNZyqyiCKGpVbKlAL2DLrfRTH6BFUVR8giLCBQUkgQSSkOS8z5kzvz/aPb89zzN7zpyTRGd9PvmEcM7MrNl77b3XXt/9XYurq6sTYIstthREHHYT2GKLPeBsscUecLbYYos94GyxpceIS/4fHMfB4bDHoS225CqCICCTyWgPOI7jkEwmEYvF7NayxZZcVzOXC8FgEIIgKAccGWx1dXUYM2YMMpkMOI6zW80WW0ysbA6HA01NTXj33XfhdrvFQScOOIfDgWg0itGjR2Pp0qV2q9liS47y4Ycf4s0334TH41EOOHqV43kemUzG3svZYosJ4XkeTqcT4XBY4SWqBk2cTqcdPLHFlhzE6XSqjh97RNliSwHFHnC22FJAcbF8WRAESYizx80uFrvIZtuD4zjNCLAct8lVfz0dzeph5r30xMyzeqpduQrRoN9XyUd7WD0pmNWxkPv3H1KswNCAEwQBHMfhiy++wGeffQaXy9WjXlIQBLjdbvzkJz9BRUWF+D653I/jOOzevRvbtm2D0+k0fJ3L5cL48eNRVVWl0CMSiWDjxo3o7OyU3DOdTqOmpgbjx483/Cwin3zyCb788ku43W6JHk6nE2effTaqq6tFPcjvWCyGTZs24fjx44afl0qlMHToUIwdO5a5Pd9++23s379fomNPEJ7nUV5ejnPPPRder9eYXdXV1Ql1dXXCwIEDhdLSUmHmzJmCIAgCz/MCEfLv+fPnCwAEl8slOByOHvHjdDoFjuOE4uJi4YMPPlC8mxkh1y9evFgAIDidTsN6BAIB4Z133pHch/zev3+/0L9/f8k9XS6XAEAYP368EI/HBUEQhEwmY1jHWbNmSfqM6OHxeITXXntN8l1y34aGBmHIkCGG+9rtdgsAhGuvvdawfuQ7PM8LP/vZz3qcXZF+GTFihHDs2DHJO6XTaUEQBOGtt94SevXqJQwYMEAg48xlZmbPZDI9xu8mM3c+9c1kMln3ckSPbPs+8plcZ7N7Z3mf0Xpku468W7a2I26r2f1sT7Qrs/3iMvMAh8PRY/ZyRM986mvk3kb1IMZL/1hhFKTPWPQwugc0O9h+iHblMts4PSlamW99jd7f6Moi/7FaR5YVjuW73b2f8rGysepr43C22NLdopRGl9ju4A5YPUuq3Y/sMwo5G5M9HdkvZmtrei/kcDjE0Dtx/3Jx3+RhfIfDIdmHqenXE+AJo+3ZLQZcTwfFWSYSYgQej6dgejidTvj9fmZDpQcqLYlEAul02hLjI3/zPG/5AOnpoHjeBty4ceMwYMAApFKpLlvpHA4H3n//fRw4cCDnjTyZpQ8fPowtW7ZI7pXJZODz+bBt27aCvduRI0ewatUquN1uw1xFjuNQVFSEyy+/XLEKud1u1NbWMk08giCgoqIC55xzDlwul9gm5J59+vTB2rVrFe3O8zx+9KMf4aSTTmLCQD0eDyZMmICysjKk0+kusSvCoNm8eTPa2tpytitXrsqQh996662YNGkS0ul0l7gBxE2aNm2apQNu+/btmD59OlKplGi0hXQtyTN27dqFa665hmnySafTWLJkCRYsWKDaL+RvI/1F2nPo0KF48cUXEQqFxIHP8zzcbjdWrFiByZMnS9qJ6PHII48YHnDkWcXFxVi4cCFGjBjRJXZFbKqtrQ0TJ07s+gGn5nq5XK4u3ctZ/WxBEJBOp7scIxIEATzPMw1UYtxW9gu5l3xfSH7k7UT0MGukhCrWlXbFerqnIAOO3i901QqXrw5xOBwS0Jh+ZnedTIjOev1itr3oQUQGmRy3o1e4XCYq8qyusCv6/brlgLMSrO0Oq5taQKgrA0Msz6Z1trpf5AA6/be8nXINpll9CMCKoFlOkzdsscWWgklBjv1bvfcp5GxHUk0Q3EruUhrlmuWKf7G+M+1+8Txv+CSM1S6UbVddMOB6Mt+J53kkk8mc3FBaIpEIU/DDyODWM0aSo4ZFgsFgjzjT2BPtKm8DjsyWyWQS7777LlpbWy3h0aVSKQwbNgzDhw/Pa6CE3Le6uhqXXXYZeJ6XrHButxtff/01vvjiC8n/k3//6Ec/wuDBg5FKpcT/z2Qy8Hq9qKqqMrznJPfr1asXxo0bB6fTaWjgked1dnZiw4YNhnAswtc7evQowuFwl+9Z9ezq+PHjePfdd3PGfWku4JgxY9C3b9+82lXeV7hIJIK77roLn3/+uQja5jKjJRIJzJ07FwsWLCjIgBs5ciRWrVqlWD28Xi8WL16MO+64Q/X6mTNnYubMmUgkEpKZmOM4kWjJMuCGDx+OlStXwuv1GgK+yeCZPXs25s2bB4/HY7jtBUEQJ4ruOuC+/fZbXHfddWhvbzc8CWW776pVqzBp0iRkMhlLoYCCDjhBEJBMJpFOpw3vJbIZnxmXLJdB7vV6VTtdb8V2u93itVa4PhzHwev1Gj5ORs/cPM8jHo9/r47eCYKARCKBVColTg5WbB++F0ETEijIFZOh8bBCd658hZOfOtHac6npaxX+le27NDDN2vY9YXDSHD+z+sq3A9+LAWcVv6urDkibPfmeb/zL6Het5tZ1p1XOCny0kO1i43C22FJAcdlNwL6qGjm0TNNitOg9rHpYwYezwmOQ60Efe5PjlbRba4s94JjcOPmA0QtgkGCJVViRy+WylA+Xy74pGAxK3ov82+l0anLlrAps2APuey7Nzc346KOPVPlw27dv17zu448/RnV1NWKxmGTWdzqdOOOMM1BeXs6sx//+7/9Kao1lWxGdTidCoRB++tOfKkLngiDgo48+wtGjR5n0aGlpwfr16+H3+yUrPcHvLrzwQsUJm2QyiaFDh9rGZA84fbfJ4XDgs88+w5VXXinysWijJYxpNQbBs88+ixdeeEFB0vT7/diwYQPOOussQyfgiVHv3LkTV111lWHXzOFwIJlMYtGiRXjooYeQTCZF/R0OB1KpFP7rv/4LmzZtMhTBJJ9//fXXmDp1quqzpk2bhvXr14uHBOQrtFl32h5wP7CBF4vFmF0yPXzIjHuXyWSQSCSYXGEaLyS8MnoAmAF3BUFAPB5XDDjithYy7YQ94L6nQtwxFj6cGpRA3Lxc9pMsey01Phx5j1wOIajtaeV0HKuwR3vA/QDFDN6j9j0rcEgzOsvxwFyxQbke8mfZA0xnIrSbwBZb7BWuRwjLSmFFPkgWPejn0O6jHDuT7+2y7TO1npXPg+T2gLPFtItolg/Hqkc2PpzX60UqlWLWRe9ZLEEde8DZwrSiCIKA/v37Y9iwYYaMlqwqPp8PFRUVluxziB61tbUYMWKEZFUigZFIJIJNmzYp+HCZTAaDBw+Gw+GAy+USr3U4HIjH49i2bRui0agk2ikIAkpLSzFq1ChJXkqHw4FYLIbTTjvN3r/ZAy5/A+7iiy/GwoULVXEnPfH5fJYYpsPhAM/zuOCCC7B06VKJHplMBi6XC3PnzsUDDzwgSSBLgOpVq1ZhwoQJEozR4XDg8OHDmDhxIr755hvFgKuvr8ef//xnBINBybE1UvTSFnvA5U3cbjfTcauu0IPgZnLszOl0al4nP7olMRiXC6FQqFu8tz3gfqB7ONaAQT6S1cr10OLD0XggzdmTY3R6zyJBGBtvswdcl7iX3cHQ5Hro8eFyxehYeHm2yLYBdhPYYsv3bIUjNJVcD67mk1ulRSvJR45GeWg9n8+i82rSAZ9seKC8z+jrWXh5aqui1XZlp1iQGRc5/JurQZHrzeSJNDqY5X/nIzggNz7yrEAgYHmnJ5NJ5vpwan1Gt30gEOjyU/+ZTAbRaNTSScpsvbxuNeA8Hg/OOussVFZWwuPx5Jy1Kx6Po76+3lIdo9EoPv30U8TjcdGQCGYm58JZYSiff/45WlpaRECahNQbGxsRi8XE/7NiTzds2DCMGzcOfr9fsodzOp1ifky5+Hw+nH322Thw4IDYZxzHIZ1Oo66uDps2bRLT7hmZIHieR319Perq6ixrx5KSEpx33nmIRCI5pcmjIY/q6uq8r3R5G3BE6VAohMWLFzNjVXoNRNLW5TrLkuhcY2MjZsyYgcbGRkWhQfo0hhX15hKJBO655x688847Yo5JWp9IJGLpgPvlL3+JadOmqbZVIBBQddXLy8vxzDPPKHA9j8eDDz/8EJMnT0Y0Gs2auYzcO5FI4L//+79x66235lwFh1x7wgknYPXq1ZbaLPFm8rl6532F4zgOoVCoW29kM5kMOjo6RGPPt4TDYcRiMXE1y6f4fD4RaLeiz3w+Hzo6Oph1t/rYl9PpRHFxsR000Zrd87WCWtmBWjkOrdafPEuNaW31s1g4e3rXkZWJZCU2mg+SXJOPVcPqtvre5KXsCVhNIWvAWZWnM59tr5WLkwwyo22Vz/fsiRigjcPZYktPdClJCLmraouppUCwahbVyyuphUeZxZ30XC8zbctSw07vWXS6BjP18nqiXXXrksM+n8/SPIymX+jf2aGscjeyJYK1+n27S5FBLVzS4/FYjn/p6e73+7vcrvQOcxd0wNGGuGPHDlRVVSnKMxXUP/43tcSKfRiZvcvKyjB8+HBFrkWe5+Hz+fDuu++qDsj6+nr06dOH6TSG1+vFqaeeCp/PJ9kjuVwutLS0YOfOncyGvm/fPhw8eFCRz5LjOAwfPhxlZWUKHZPJJLZv3y6G/unJ5cCBAzj77LORTCYlZzVdLhcaGxuxZ88ey/ozmUxi69atOHr0aM514Mzat9PpREdHBzo6OiyxK8tWuN/97ndYtGhRl5ar5TgO0WjUkpWCDLhRo0ZhzZo1Ij5HXAyn04nnn38eF154oQSPIp8/9dRTmD59uqFaYySSV1VVhRdffBF1dXXgeV78f5fLhc2bN2PSpElIJBKGXGcSGfz973+Pp59+WsGHc7vdWLNmDX7yk59I3HGO49Da2oqZM2di3759YjZlwr07/fTTsWrVKgQCAQm7wO12Y+XKlfjVr36Vs2tPru3o6MDNN99sSf23XO3AKnzUsgEXjUZFY/8+idvtRllZmers6nA40NnZqXqdGdzJ4XCgtLQURUVFis/U/s9ov6jhiyQZrNZgbW9vV323aDSK0tJSVWwvGAxavsKQSqx20ERlJugOkg8cK51OK1Y4+nSGWslhs+2RTqclHDV6dTEjcsyPZnzr6Ug+p3UgqzXRkV7hnE5nXgoaft/sytVdDb07iRpfjN6/yN8/1/OiWj+5BH20+HBGr5OTXNXaIx+D4/tmVzYOZ4st3dWllHOresrqZCR8L8eW9Phf8tprVrqU+Xh/LT6cvJSVUdxJqz6cWnsY4TD2RLuS8wTzMuBSqVSXgtu5iF5BDpr/RRsV2VPJC1TIB6PWXqw7iB4fzu12qxq63+/XHCAOh0PBh6ONz0x9uEQi0ePsiugai8WY3F6mATdgwACMHDlSUhusJ6xwmUwGwWBQ83R5IBDA2LFj0dTUJAZHSBSvb9++2Lp1qyTJDgmrx+NxjB49WkHpSafT6NOnT5du+slzhwwZglNPPRWBQECRROi7777Dxx9/LGJc5L2OHDmiyQZob2/Hli1bRBugr2tra8OYMWMkMAmh5/Tr109T15NPPhlNTU09yq5Iia6hQ4cypQd0Gb05AEydOhWXXnppj6zxxXEcSkpKVN2Bmpoa/OlPf1Lwv9xuNzZv3oyf//znityNyWQSM2bMwOuvvy5+Rq+YJIzfVW1F3mPmzJmYOnWqBMAmk8KNN96I2267TSST0rN3e3u7ZCYnv3ft2oVJkyYpGOvJZBKTJk3CP/7xDwUxVRAEke4jdzE5jsO8efMwZ86cHmdXJNpL+trI5Mq0wgUCAZG0+H0Sp9OpWZE0EAigublZ1W3geZ65kmmhJRQKqXLbSIqC48ePM90vnU6jpaVF030lWaVZpLi4uEdy2/IeNOnpIVoz/C+e5+FyucRU4WSFo92p7pyfUY3bR1Y4EuBg5eXJ341gcHrtodcm32e7yjlK+X0VFv5XT6qHpmX49HuxnvK3uj7cDym3pY3D2WJLd3YpzXCr9ISlDpkRPYwEf4zoocf/MoItyXWkMSszutNYlRxLI/oawf/k2JkW/mWWe8earzJbX+vp0RODd8wuZT6SeZoxvnzrQf52uVyKPJhG8mNq6ej3+03V+eZ5XhGqpyOIrO3o9XqRTqctxb9cLpflg6AnDirLBlxjYyMOHTqkMBhBEDBo0CCUlZUxPTwajWLPnj2K2mU8z6OiogKDBg1Sve7IkSM4ePCgYcMluNPQoUNVT7TH43Hs2bNHwuUjsMCRI0cwevRoxWmKeDyOAQMGaD7zwIEDElyPrEjxeFzkVrFISUkJzjjjDKRSKQk8kUqlEAwG8emnnxrKE0kfOK6pqcHIkSMVOGIymcTu3bsNMx7Itc3Nzfjss8+YUyIOHjxYhGxoSafT2L17t5h7kraPoqIi1NfX97gBaWjAkRn0pZdewsMPPwyfzyeJ0gHA8uXLcdFFFxmabcl3Dhw4gCuvvBItLS0SwDkej+PSSy/Fiy++KDkqRa5bu3Yt7r//flGPbKsh6aCXX34Zp512muIkfkNDA6ZMmYLDhw9L9EgkEhg/fjxeeeUVkZNF43Rk8MoxJ47j8MQTT+APf/iDQkdBEMRQvJGVhbTlqaeeildeeUWhg8fjwerVqzFx4kTJwNFrDzKZPPXUU1iyZAmSyaQ4iAmR9JJLLsG3336rGsHUcvs2bdpkOHEu3Z8rVqzA+eefr6ji097ejhtvvBE7d+4Uc3gS+xg9ejTWr1+PUCjUo8odM61wnZ2dmriNmRyLqVQKTU1NIshKS2trq+Z14XCYGT8Kh8OaLmA6nUZTU5MqvhQOh8WMvCxy/PhxZh31xO12a2ZKdrvdmtiYnsGHQiFVHJFAIayiVofO6HVaA/no0aNoa2tTfHb06NEeecSQqVW1uFXZAgh6ne52uyVhaprlbFSPbM8gR4+0dNTTw+l0IpVKSfhw8mu19jOkvracJ5ZLWm75wKBXXiNMa7o9SJ03+cqSSqVyKo5h9HtGioqQfpHz8sxMCD02SmllDkctjEvvvqz4EQv/S+3+Zuqh5SP3pF5mMJb+kL8Xa304lknBqn5R++mJYuNwttjSXVe4bDORVohZL4hiBuNi4U/p8b+sxtrooAn9blpp9lhFDSvM5kbKVywr+HBmV2czesj7OtcagfnAcLtkwHk8HmYSISn4rsZD08O4zPDy4vG4gv9F51o0o0c2wNZqjpderkhWA0skEiJuxsKHs2LrIG8nLT18Pp+Cz0d+my0Okq9UEAUfcHv37sWuXbskNdZImHnQoEFifTL6hf1+P0aOHInW1lYFLDBkyBDNZ9XU1OCkk05SlHvSauBMJgO/34+DBw+KgC+dTKehoQHDhw9Ha2urGIQgetTX1ys6iLzHsWPH8N133ynSuDmdTgSDQQwfPlxMT0fr8s033yASiRgKcpBnhcNhfPPNN4rKqX6/H99++63m9X379kVVVZUYuKHfu6mpCV9++aWkPQj2SCKHVu2Vqqur0adPH4UeDocDR48elehBJpP29nYMGjQIbrdbbEcC1wwfPpx5cuc4Dk1NTWhoaDAEoejZcJcMOFrhBQsWYMmSJSLoSfCvsrIyrFu3DsOHD1cMuAEDBmDNmjUKwDaTyUiqgcp/X3HFFZg4caKhBifPjEajuOmmm/DFF19IIns8z6N///547rnnUFlZKdGFGDQBXekABcdxWL9+PebNm6cAjjOZDO677z7cc889SKVSkkEcjUYxZcoUfPjhh0wDbseOHbj66qslmBkB9Ek6O/peJJp34403YubMmUgkEpL3TqfTuO222zB79myF8WUyGRw7dsySAUf0mDFjBmbNmiXRn7z/7NmzMXfuXEnuzEwmg7KyMjz77LMYPHiwmKeT6Of1ekWqmJEBQJ63cuVKLFy4UMEB1JqseZ5HaWkp1q5di5NPPrlrBxwtbW1tqnhJJBLRdMvcbjcTxkUXeWStOReLxdDW1oYjR44oPgsGg6iurkZlZSXTPTs7O9HU1KT6mdfrFVnftKTTabGgJIvE43F89913zC5qeXm5Jn7X0dGhqb/VUlZWpqlHOBxW1SMWi6GystIUDqol7e3taG5uZromHA5bVt/O0ryUasl09PAvrRlUvhLqhbWNzmwES9PCdAj2RN83mx5qddLktBc5VpZMJk0fXvZ4PIrMy3L6kNoA18LaClmnTksPskqr4btut1txnZF+0ROrMdwujVLq8aSyrVrZ/i+Xja8W/ysb1mbkXKJeXsp8YFzy5xlpXy09Cl2nTk0P+r3UsFC963JpQysxXCYX20ZGbLGlm0YpzeBf5DdriNwqPpwRTMfIYWutv83kpTSrh1ZdtmwQglGMK5fwvlaf5YqbWQWv0O/fYwacGfwrmUxq5j/M1T1hEZ/Pp9Cf/I7H47odoYV/mc1LqYUt6emRyWSYDojTUIRa2+eDD6dXS89Mnk6O4yyrO0jzG3vMgKupqcGQIUPg9XoNzRSZTAbFxcU4ePCgGJgw0nCZTAalpaWauQyPHTuGw4cPG4YFHA4HYrEYamtrEQ6HxVppJHhwwgknaOYWDIfDOHDggEI/j8eDZDKJE088UQELpFIpMXuV2ow/ZMgQtLS0iO1IrunXr58IYsuvKyoqwsiRIyV12bIZK8/zSCQS2L17tyQc73A4kE6nUVVVhfr6ekXtOK12dDqdYnuoDdLS0lL07dtXoUcymdSMUGYLtOzatQuCIORcdzCTycDn86lGqbvdgCMvOm3aNFx00UVMht7R0YFZs2Zh9+7dEhBY71nxeBwXX3wxfv/732vy4R566CHDfDiC6y1ZsgSnnHKKaHz04CE0FRqDczgc+PjjjzFjxgxJVioCvl599dXYtGmTYiLJZDIixCB3qTweDx599FHEYjFFLkuXyyVeRwPAwP/nwxkhmRId3G43Fi1ahPHjx4uHBOjI4MKFC/HYY49J2kPvfl6vFx988AGmTJmCWCymYFace+65WLx4sYKAmslkxPY1ajsARD6ckQMORu2YQFddRe1hWuFKSkpUmbl60tHRgebmZjQ0NDBdpzcTaeFp2VzKXr16oaamhum6aDSqeZIjnU4rZnQjK0/v3r2ZO8rr9epmL9bbBpCqsGr9ydoeffv2VQwaMriKiopQW1trmXFmMhlN3X8QQROr8K9ssxCZnTWVZrhfNkxHbjRq15NrWfJS6t3TzDWsG37yjmS/q4ZxyflwRu6nVyOA3M/Mu+n1n9XSlYGTvCYRMoP35JMPZ7aWmdV5Kc3icWafwYJxZbtftuir1Xk67fpwtthiS2FWOKOrAO1S6uE9ZlF8q/hwaoEh1nc2k4fRSIBKy61jcSnztUJo5cc02waFwAPNXJcP27H8LKXaZt/qunJm8CM1PlzOs1Ue8jCaHYxa37Uad9LjMOrt77IFdvKNB+ZynZW2Y1lvNDY2or29XaSykBmvs7MTtbW1qrSSWCyGQ4cOMRdjr6ysFLEzo2nh/H4/GhsbUVxcrEr1qKurY07QeuzYMezdu5c5D6PWiuTxeNCvXz9JwIimFzU0NBg2JBJ4Ys3mlU0CgQCGDRuGaDQqwfUSiYQYoTSKExLp378/TjjhBEOUGWI70WgUhw4dknyfrEhFRUUKhgG57ujRo2hpaVE9rVNdXY2SkhIJxSyTySAUCqGhoQGBQEBhOz6fD/369TNsOznz4YjiDz30EDZs2CA2Gv3yS5YswZAhQ0RlyQn9r776CpMnT0ZbWxvTcaWrrroK5513HjMfbvbs2di5c6fEBeJ5HoMGDcKaNWtQVVVlyDUinbx+/Xq8/fbbObttRI9+/fph3bp1qKmpUZyq3759O6655hoRADaa+5EMuFxXD9LWw4YNU8UDeZ43VXKK4zg8+OCDuPPOOw0finC5XNixYweuuuoqhMNhxTHCs88+G8uWLZMEh2hccsmSJYprAODee+/FJZdcgmQyKWF4dHZ24vbbb8fu3bsVtlNfX4+1a9eirKzMkO1YtsIdPnxYFWsLhULo3bs36urqFJ9FIhFTS7SZemLxeBxHjx7FwYMHVV1DM0ePOjo6TGVR1hKe5zXdslgshn379nV5LkbiDVgpZk6hHD9+XNN2QqGQpo569fyqq6tVccRwOIzm5mZV22Gt2mrZgKN9XHqF83g8Eh+d5qLp5QuxykeneWh07gxaF4/HYzpMb0WwxIgeHMfB6/Uq+HD52s8YWeGtag8WHY3YDs/zqoe1yZG2bHtJNQ6jnu10WZSSPowrB4XVTsbnEtViyQ9J44HyA8Nmq9lYbcxG9CCTFsuA6+rgTT4mrmy2Q9ubPIuakevkkVcrbcfG4WyxpYCS09EueW0yK0VOx1dbsVh0ZD3hkisT2mjqcfq72WZ5+qhWLqsJuReNI9LvXehUcqxHBmnsk15t6b/lngC9QtHtKMfdutWA01LQ6XSaqnmmJ/Q9WRpFS0ev16u7PyL7J/qdyN403+4mgUX08p0Q/CtXN5ZcS+elVBuQhRSWAU76hdTto/eTpB3ps6Hy/pTvQem2ZIWn8j7gWltb0dLSosjDCEBM1WaVdHZ2Yt++far7mPLycpFvJhdSjYfGAwmPS6tKSyKRwN69exEOhyWHlH0+Hw4dOmTKwCsrK1FaWmqoE0kQoH///uIAlxtgIBBAfX29yIfLZeUlVKDW1lYcPHhQvCcdPq+pqTE92bDKkSNH0NnZqWpXahMGyZ05aNAgMdJN9l3JZBJFRUWKHJ4kgAcAdXV1CviKQFj5nnSY68MtWbJElYfW2NioG8FijYBt3boVF154ocIw4/E4br75Ztxxxx2qp9wfffRRvPzyy4pwbSaTwaFDhxSbXgBifTg5kO5wONDZ2SkOGqPuoSAI+PWvf40pU6ZIEuNmMySPx6PJhzvllFPE+nC5um8EQ3rwwQdxzz33SPJBptNp9O7dG6tXr0b//v3zVnuNxsAeeOABvP7664b5jel0GkOHDsXKlSsRCAQkuSw9Hg/++c9/4oILLlB4Oul0GlOnTsVbb72lSoYmYHk+Tw8xrXDNzc3Yv39/QWa9cDiMPXv2aOqh1YGHDh1SMLSzSSqVwjfffGOp/n379tWtkMoqgUBANxu1GTl27JiqF9He3i6G3QtR7PDgwYPMdhUMBjF06FD4/X7FZ5988gn+7//+T/Narcq63S5oIscizO5ZzPr1RmqDyfFAtdVTy63LdS8mH8Q0pmPFXsYK0FvOU1TDTvX2u/kQvT5T6yfi9iYSCUmaCuLx0Mev5BxG0o5anMh8vzdzlFLujuU7cqVmdNm4cmZ0tPp95JiOFWLFfejonhZ2WujTLKx9RmyArk4kx9roJEp0NJ1ux66oD27jcLbY0l1dSpqubzR4kO275H7yyJueK0c+k4d3abaxVdy7XFdotaQ/XTGzFvKdWd1lLbvqTpVO5Tqa5QAyDTiSE4TloG8ikdAdOHIsxehekuM41b0c6SQzh5Etncn+rWOhQuvdySjN7He7Q5+x6EjXD2SZFJgGXEVFBWpqapjqspWWlmpWi/F4PBg4cKCkLhuZPcLhMI4ePap6XVtbGxoaGiTp3chqGggEUFtbq0jJJwgCmpqaLKuCkk2am5vR2NiIeDwuCZpwHIeqqir4fL7v3YALh8M4duyYYtAR7FQr41tNTY3Crgh0ceTIEdPEVsv2XQ4Hamtr0dLSIuJ3JKESK4+SKS/l9OnTccEFFxh2iQjASqgS8s3qwIEDsW7dOkkhPpJD8u9//ztmzZqlSJcOAP/zP/+DzZs3K8iHPM+LtcZo3hgBvq+77jrs2LHDUDQsF7cKAJYsWYKXXnpJUoCQEBZfeOEFjB492lC2rJ4g5D02btyIu+66S5IYlyThveeee/CLX/xCkk2MtMsDDzyA22+/XVHIs6WlBdOmTcPevXvz2md6iwbwL7rPsmXLRNIt/d5+v1+kihlZ3ZlWuF69eqFXr16WvZDX69XElvr37695XWtrK1pbW1U/C4VCqjhLIpEQC/gVQo4cOaKaO9PpdCISiXzv9m7E89DCv7S8FQCauSy7iyfgdDotw1RNHV42syTrzY5qsyVrbW2yChIulJzTlK1+QL73M/Rxsa6sMZ3vfas8AGYEO9VKQFXoPjNj+6z71rzmpTQ7GLPxltRenqbMq3GaCu26yXXsKoyr0O+sxtfLhp3K7aqr+qwQtm/jcLbYUkgvwIyvno+Naa7XyGdINX6b2czLue5ttFY/rZW60LO2lRVGrWgnvT6jf8xwGPNR9TWvLmV32qSr/R9xR8mega5aQ3DEQvCe9ITUjLaaQ8gq8vYgbWi2DrlVBkv+putBEB3J73Q6LbajnPOmt18k+GhXtT3TgOvo6EB7e7slvjWhUlRWVjLfr6ioCKWlpaqwQCwWQ1NTk6IeWiQSQXl5OXr37m0o/2GuBtTW1qYajRQEAUeOHEFzc7Ok5hmBL6qqqgpiDKSKT2VlpUiLIYeaa2pqClq4sKWlRRJyJ23R2tqKyspKtLW1SfCvZDKJiooKHDp0CKFQSELP8fl8uhHR48ePK9q+kDbMzId76qmncq7XRUDDE088EcuXL0dpaamhYzIk4nXFFVdg9uzZqsD3smXL8Pjjj0s4XiQ6eM8994j5MfO1WhMMad68efjrX/8q6kyvHnPmzEFRUZEE5E2n06itrcWKFSvQp0+fvNFi6NXgt7/9LebMmSPBzQjBk5SxylfgQs6H27Rpk6SGHSnmed9996Ffv36K2nb79u3DtGnTJAlpaWKt3PMhbb1y5Uq8+eabluTpTKVSGDJkCP74xz8atmGmaayhoQFff/21ZY3O87yp4zx9+vTBSSedpPpZe3s7vvrqK8X/k6zGw4cPL8isLSeS0pOXFveura1NPAmTbx4ax3EYOHBgt9gi7N27V9WuiouLMWjQIAwdOlTVdnbs2KHJ4teS5uZmVT6lWUmlUkw2zDTgWHhLRlYqs5gUXVtAng7N6XSqcrzkNb7zPXPrdYI8aJNre+Siq9ZerZAheY/Ho9lndD10OidkKpUSP2c5+G51LlHWPusyPlwuxRvU8lyqHQGTc7zUrsvXgGPFEa0sZsEapewOQTCWPqM5b6x5Oq3OJcraZzYOZ4st3TVKmUsF0Vw2+PRvo1U4WbElq2Y9o3kws83AhcCJsp3+yIf7qoWdsVynVsHVyr7rNgOO1HAuBI5FL9ekIeRYjNb+Tg1bInymfBuYWh5ElmsLidEV0p2U41/0RKj3rvL2oH+TPu1JZYmZBlxxcTEqKioMwwLEz25paWGORgYCAfTp00e8DwkHx+Nx1co5pAPLy8tRXl4Ov98vhv9JjS+twgs8z4s6Gi0FpTdLulwuEYMzWoOc6HH48GGxmk+uA0IQBJSWlqqyJARBQFtbG+LxuMT4yUHjiooKSwY9ebf29na0tLSopg3UijQSzLKiokJCt3K73Whra0N1dTXC4XDOfUbenbRHlw840kBTp07FOeecY6gjyABpb2/HDTfcgD179hjOygQA48aNw9///nfVwdG3b1/NwMcdd9yBa665RjKTEl0IFYhOh+1wONDQ0IBf/vKXaGpqkmBSuUSwSNo3IxMTeV5TUxOuu+66nHFOokMymcTdd9+Nq666SlFvjud5zJ8/H2+//bYE+CZ5KV944QUR/8olwETe7cUXX8Rrr72m6p2QVH1yj6a9vR033XQTgsGgeB2pgDNw4ECsWLFCzD+a6+TEcRzmzp2LjRs35pV7x7TCEWYui0QiEQSDQWbFSktLMWrUKObrBg4cyIwvxWIxfPzxx5ocu0JJMpnEF198Yek91Th5xKi/+uorfPnll4rPysvLLZ/pGxoaVOsH6kk6nVbFVMngHD16tGY2ATNCuJ5dnnlZvoE1+l2O4xCLxUzNFvkomq41U3McB7/fr5rMKNcggZmVyQoxwkPTwr/8fr/lRmdVoXs6L2UsFhOzZZvVl762EDlV8saHy5XTZDb6ZPa67lJ7zUpXhjWHZz45e1YWutfLS5nLgCtEEMnG4WyxpYCSNz5crniUVXrIV79sKyPrLKfnChXy3bKtEEb4gWYxS/q+2VxH1rbKR3vo/W3UDszaS974cDSnKR/7Aas7geB3VgPgXS1Op1MV/3K73QpclehM2sJo+9PcQzNt2B24d/TEYWQvR/Py8jbgotGoiHsYaUSHw4G2tjbLN6OxWAzhcJh5AigpKVENIrhcLlRWViKdThuuUUayb2ll4AqFQggEAoapQCQk397ebukeqrOzE8ePH1fwA1OpFILBIMrLyyXJlnieR2VlpWawJZVKoaOjQ5GzhBRIrKioUDXqcDiMWCymes/i4mL4fD5FW2UyGbS3t1t60EJuw/RK7/V6UV5eDpfLZbhsVkVFBVOcgpkP9+yzzxomcBKlCB0l15mM6LFmzRo88cQThvQgYG4wGMSyZcswYsQI8T6koWpra7Fy5UqkUilDg4MQD//0pz9h8eLFkkALXR9u0qRJEs6e3v1cLpcED8w1eEPa5ZlnnsHf/vY3cdKjccmbbroJ8+bNk1SbIe8m58ORNtu1axduvvlmxGIxyQDmeR5jx47Fa6+9JglEkIji4sWL8dJLLykwLo7jcP/992PChAmKSaGtrQ033HADvvnmG0vaw+FwYNWqVXj66acVBRkB4Be/+AVuvfVWSXtku2cgEGAq5Mi0wh04cACff/55l7tZhw4dYtbD5XJpVmn1er0YOXIksx7vvfee5mdDhgxhvmdNTY2Yh9GqaOnBgwdx8OBB1c8WLFjAjHV2dHTg/fffV111hg0bhtGjR6te169fP8VESAbmsGHDVNuqs7NTPCVjVXvo2fDcuXNNYb95cynN8uGsDjOz6EE6KhAIMOXHNDJb6uXOJDwuI/XhyP1isZjl+xmt/Jhut1uXH6jVVk6nE4FAAJFIRLJakvekC97T76aXrjwej0v0INdHo1HL20NuO/RAJjxLlpp+em1lSZSyUPXhrNLDKLbEihdmy53JWh+OdnHzEaVUaw8z/EByLW2sxG2X5wI12lb0u+c7l6gW9mimz8yIjcPZYksBxTI+HEsYWS+3oN51RvTQuof8WbkyArRwJ638mEbul0vuzFxOcRQiP2ahc2AawQq7gvFeED6c/OVpXhvhSbG8OIsetH8ux6TMipyJIM+nQXeqkXRzNMerkJxDq9rDTJ/RlKRCJBim31FNDyuDepYNuEAggGAwKNI5aIlEIqpBBI7jUFRUpChhlEqlUFRUJJ7QpzEYUtg9FAqp6uH3+xEKhZjq1IVCIYTDYXR2doqJZ8wKSR7D8zyKi4sltegIlpVKpRAOh1X5X2qTgsvlQnt7O4qLi1FSUmIIDyRtGYvFEI1Gmd+jo6MDkUhEDPHTVWuLi4st3cfIbYd+lpUn/knAKhwOK9qY8CFp26H3cOTzLmcL0Hy4M888U5UzNm/ePGzevFkR/SkqKsLSpUtx4oknSjIsuVwuNDY24sYbb0QkEpFsVuPxOM4991wsWLBAUaQDAC6//HKMGjXKsFFyHIdEIoHnnnsO9957ryFgM1t7pFIpnH322Xj11VcVgK3D4cC6detw3nnnKQpD6k0K5eXlWLhwIcrKygwXl/f7/Vi7di0ee+wxQ6FzesW///778eSTT0owOgJ8L1u2DLW1tTmn6yN9dt1112HChAkK2+E4Tkx5aEViVofDgS1btmD+/PkKV5/neUycOBFvvPGGKsH3xBNPtEQPy1a4uro6sbiiXKqqqtQf4HJhzJgxqnkkv/76a7z//vuK2UjvfsC/gGqtmmJ6s96cOXPw6aefWtZ4Z5xxBsaNG6f62fLly/HBBx8w3a+6uhqjRo0Sme5GZceOHab2ODt37lT9rKysTDwVYlV+zAEDBlhWYy2bNDU1YevWraqfTZw4EWPHju0ZQROtOl56588EQRA5cfLcgslkEn6/H9FoVOJiZDIZXTfDLC9Pzv/KZdamMwTTRkmvxg6HQ9yXGbmf1+tVYFLZ9kVOp1MXDzQSyKD/JphlvpIIGdEjZ6P+d506+p3oPtdq30IEUXLiw9EDjgVnIb+1cguy1hMzMuCIy2plXk3yHmoDjnyHvKOR+9EcLyOuDfl+LsyEQtWwK2REkH4HuV3JbbDQYuNwttjSnV1Ktb/18A01/IsFn9IK1xrlXFlRH85MuNgsZmkWG7OSy6emh14+SCNtapZLqVcfLlv7y39bqaPRfsnZpdR6KdIZajiLHO8xUseLjkqa4eHJ/3a5XAXFuMizmPlSJuqXWZ04lvSRVj5IOXeQvKNeu5rpQzVc0khuUjnR1uh1hXB5mQZcPB6X5DGk9ysejwfBYFBRJqqkpATRaBSdnZ1i3kdC2Whvb9c0klQqhfb2dsVzSJEHcqpeLtFoVIKzkX1OOBwW8TujsAChF2lx3vQkEAggEAjA6/UqOjkSiah2vCAIIhYnxyXdbrdm9jOPx4NQKGQIJqH3NNFoVHVCEAQBHR0dqn0WjUZRUlICj8cjObycSCRU819q2Y6RvWlnZyeCwaCkz2gMV2uF8ng8Yu5SOmhCCoBoidx2jE5MwWDQ8DUuozMox3FYvXo1nnvuOUkuQPLZlVdeiVtuuUXCKSMnvpcsWYJDhw5JMBin0yl2qpr7uHXrVlxyySUSA3I4HIhGo7j++usxc+ZM1WDN448/jg0bNoi5DImOXq8XN9xwA+rq6gwlWSUY15YtW3D33XcbXhXJfW+55RZceuml4ipOY4x33nkntm/frghSNDc34/rrr5ccLCDXnHHGGXj00Ufhdrsl7QEAF154IU444QQmYnA6ncbcuXPx0UcfKfC71tZWzJw5E6FQSHxvMvkMHDgQL730Erxer+QaUt9OvlKQPvrjH/+IP/zhDwgEAkwcxjvvvBPV1dVinxE9SktLxQmIPI+8/1lnnYW//e1vighsOp3GCSecoLmaLVy4EK+++qohHR0OBxKJBIYOHYqlS5eiuLjYuvpw5EZ79+7Fhx9+qPqdX//61zjzzDNVZ43Zs2dr5hfUmqVaWlrw9ttvq37nP//zP1VXPo7jsGPHDmzbtk1xjdvtxsMPP4zTTjuNaaUiNBT56pBN6uvrUV9fr/p+paWlqveLx+Oa2B0d1pZX6KmurkZ1dTXzKkznYaTdsGQyiY8++kj1mmQyiQkTJhh2eYmue/bsUe0XPSkqKsITTzyhWh9Ob7KrqqrSxXHp79I2tH37dmYdjx49ygTL5MSHU+MSqXGa9PAvrZlEbYNLrtdKWQ78i0yqlWtRXmss2wpHVhcrQu40Hqi3Wqrx0shRMqPPMjIAshUS1NLD4/EgGo0iGAwqZnS9oAQLBmq0z7T60CzmR2yHBTtlzeGZEx9OjUtElMkV/9JqtFxyLbLyv3LhqGlhltlwM7X2yVaHzCwuaUYPs/kgzXIYzXD2zGJ+9DONYqd2fThbbOnG4mK9wGoukdW4iNW5FvNFHTGD0Zl1bdX+LnQav3zgklbbW7cbcFpYWy4daHXHE7dHDQ9k6Qg5/mSlFBIP1MMlC2l88n4xKoXk7HW7Aef1esUf+R6ODlcb9mcdDtVNJ9nUmwlY+Hw+eL1eSZ5DnudRVFSkuQfIZDLiAWv6HKTX6zXFM8smwWBQ0o7knXmeFw8vWyWJREKBS5IQeSGKV2jZDi3xeFwTDyScQiPpBo1M7l6vVzfo1i0GHHnRyZMn4/TTT1dwmgRBwCmnnGJ4ySYRnv79+2PRokUoKSmRFE/0er3YvHkzHnzwQcMrIHnubbfdhssvv1ysqkL0c7lcYnhZngS0sbERs2fPxtGjR8V3I9c0NzerruhmVxqv14sFCxagpaVFfBYBlRsbG3H77bejubk557Rw5N2ef/55rFu3TkEaFgQBn332Wd7dS9LW06dPx5lnnin2C33w/f7778f7778v2gXRp6OjA7NmzRLtI1c9EokEZsyYgenTp+dc964gK9ygQYMwaNAgy3zk4uJiTJw4UfUEBc2RYzG+ESNGYMSIEUxGGYlEsHHjRrS1teW9wR0Oh2buxqamJvj9fuZ31nu3nTt34p133imoW68mQ4YMEQtiyuXpp59W/f9UKsXMKcwmalhxt9/D6W2KWf36aDQKv98vSbdG0gaYNTQz9eECgQDa29tVDd1quooaFklO0Vht/Hr4VyHrY5vhUur1mZmJLhuG2+0GXD44TWqYjpX4F8sgKFR9OLV3y2deyu6QS9Qsl7KQ9fIKITYOZ4st3XWF0/P3c2Ud0wEO1lyOubo5ahwvo7O1FW6ZXl5KtWcZeV6ueunlErViP5hvPFBL/x434KxWmuAsNAcqm+9Ovm9VfklS/cWokdIRMys6ktZDjlfREVJ5Wxm5p1WFIY3wyVieJyeG5sOVVtO/q11KpgGXTCY1Szp5PB5DSU/ljRKJRCS5CsnGNpFIaF6XSqWQTCZzxmZImah4PI5AIACfz2eIU0b4XyT9XiqVskwPwvUjehAel8fjQTgcFmkxRuhFpGCHmUnV5/OJe2syGZCkT1qSTqcNn5yn93BWHwBwOp2KJFRE/x4RNCGNs3btWqxYsUKRzBMA7r77bpx11lmGjIFcc+DAAcyYMUMBhrpcLhw6dEjhdpDf69evx549e3IGbgnYXF5ejkceeQShUMjQJp1gdJ999hkuvfRSw/kx9fTIZDIoKirCQw89hOLiYgkVx+Vy4bvvvsM111wj4fgZMTySQs8o4VYQBJSVleGRRx5Bv379xAmWgOW9evWSlNQi93Y4HNi8eTMWLVrE3B4ff/yxJQESov+4ceNw9913K+rQpdNpMV1jV7mXTANu586d2LRpk+p3pk+fLvmukQHX2dmJjRs3MrsJ+/btw759+yxrhAEDBuDJJ59EeXk503W7d+/Ga6+9Zpke1dXVWLp0KXr37q34bMuWLZg5c2ZBjMLn8+GCCy4wnPuTnkCtbA+zA662thY//elPC7o1yotLKcd06JmW1Z2kl3rWTb9Vfj+dD5Ic7TLqrtGZonOFEmjOm1YOz1QqBb/fL7qyLMEJMzW3o9EoMw+N8CVZ28NqPJBwM9UWgK4OnljGhzPbYGbcCCs7yCzHiy7FawV2Rxs3Sw7PfAlLfky5fRRCv2yrl/z4XncRG4ezxZbuusLRSzLL0tyV9biM6mWmTp2R++eih1wnqzl0emkPjezZWD2OfKRPz/aZ0dynan1htM/y6lISt0GrLpqe29YdjtZo6UXcNiuNwui7qukh/03XMbCqDbXIqUZSIMjdTytBcasmUyODXG3yMmKndJ/lbcC5XC7xR+6ra4HQHMeJGF2uZaLysU/heR5ut1vEGGlOHNnbmeH6uVwuphpvRI9UKoVUKgWe58WgCUm+SrAleS4ZnudNQSQkyEHfi+Cgepmt5dgez/PweDy6OjidTtUyZ2YHUyaT0cQYM5mMiAdm28PJz/C6XC643W5DSYTS6TSzbbhYZosrr7wSJ598soRrRoRQTuQzSygUwmOPPYbW1lbLGtzKFcjhcOD48eO48847xSo+pEETiQTGjBmD+fPnMyWwEQQBN9xwAy666CLDBRlJ4tP77rsP4XBYEsDJZDKoqanBihUrJG1IIpuvvPIKnnnmGUPBCjp567333osxY8YgkUiIqxTP8/D7/WLJLDnWtnv3bsyfP18s4kj0d7vd+PbbbxUrGXne1KlTceWVV4rPyqXP3G439uzZg3vvvVdSeYnOaXr55Zcz33fChAm4+uqrJZOuXjvyPI+SkhIxKa0h76iurk6oq6sTBg4cKJSWlgozZ84UBEEQeJ4Xfiiyf/9+oaysTACg+Bk/fryQSqUEQRCETCYjaZvFixcLAASO48Tvk3+vWLGCWY/Dhw8LVVVVqnqceeaZmtctX75coYfWD/mO2+0W/vnPfxrWjbzzli1bBIfDkfU55Id89/HHH7e0z3bu3CmUlJQYfm8jPy+//LIluqXTaUEQBOGtt94SevXqJQwYMEAg46wgfLju5EbK9SLcOzkfjs47aEYSiQQymYxYW4FFDxrrpHlcsVhMcrSL3FvvGJyeyDE/ucuk5UoFg0ExQa58H69lHyw5QY20lR53kDWgJ8+taqTPjLRVzns4s0GFrqCys+hGjFqtTp3ZyYLOycmSA5N+Jv1bDSvMtT6cGayNbhcWvM1MfkkjerMuDHoDjrXPTOluIyO22FI4sYwP1xPESH01lnpiVobjzXAA1TA6lv5irdWXLzwwW7XbQgfSWGvz5XXAdSfg2ur9HN3QZnEWM21IY27ZXCna0Gl30gw+J8f6jD7bajywu9gUeb9c3HRLBxzP85K6ZT1tdSMETrXP3G43nE6nhIeWSCRMYXDZhGzO6cHicrmQSqU0jZjgX/TBcXLwmuirBrvwPK85aRDczAivkARuCF5ICtfTzyMBB1bRs6tCJqyl24MOmujZTl4GHIkMvfzyy/jzn/+sqA3WE1avQCCAefPmYciQIYpDwn369MGyZcsQjUYlhkdqnuXKniYDhuM4JJNJ/Pa3v8WOHTvEdiS4WGdnJ44dO6YImADAV199henTpysMged5DB48GGvWrFEMYo/Hg+eeew6vvvqqIucjz/N4+OGHsXLlSk1SsVo7VlZW4tlnn5UcfiDR3DfeeAPLli0zFEyhAz+PPfYY3n//fUkENp1Oo6SkBA888ADq6urylkeS1nPp0qXYsGGDhAPI8zxCoRDuv/9+DBw4MHc9jOBw5N9z5861BO/oih+XyyVs3brVEozRCA73/PPPSzAZguFFo1FhzJgxlr4b6TM1ue222yR4WK4/p59+umb7rV69WtEe5LmPPPKIpO1Ie2QyGeH8889XfVYoFBJ27NghuY78/uSTT4Ti4mJLcTitH6/XK2zbts2w7ViGw7HU+OpOrqQgCCK+pTd76/n1Vorf72eul0f2UbSQOmb06iU/GaKXYoHl3Wg8MBKJSOrD5YoHatX0y9Zn+drDyW0nGAxapkdOfLieNOCMlJAtpItrph3l36XrmKlx+bJt/lkDH/nCA/Vq+nVFhJLVdpgCVbDFFlsKJi4rb9YdopdWY0FGeVFq31fDuXLBsvKRa9EMZy+f7hxLTT8z75WLfViB0bm6g7F3F9fTCjdE7pKoYWe0G8Wa+0PNxStEn+UTl5S3h1FeXiFtkQWzLMiAo8PsXTHwaH/bzPNJIli1++px/TiOk/D86KSywL+gBfp8HvmbYH80/qSXo5EGxmmKjdE8kLn2mdPpRCqVsrwwIn1ukbQHaUOzianU2oqm8JgZyMSu5DlIWRMSWzbgZs2ahR//+MeIxWJd5lo6HA48+eSTeO+99wxFUklHHD58GL/5zW8kNds4jkM8HseYMWMwZ84cBf4FABdccAEqKioUgLPD4cCnn36KK664QvGZ0+nEpEmTcNNNN0myAbvdbhw5cgQPPvggWlpaFIZy0kkn4a677oLH4xEDCwTXM5Nr0el0Ys6cOTj99NMRj8cNuc7pdBq9e/dW5KXMxaNwOBy4/fbbcdlll4k8S5qXR1L1GU1BLwgC/uM//gOzZs1SeB4+nw+rV6/GX/7yF8NYIQBEo1Hcd999qKyslGB0yWQSAwcOxPz581FUVGQoYZHLilUFAMaPH4+f/exnXe4a/uMf/8B7771nqINIA3V0dGDNmjWq9eHa29txxx13SL5P7l1fX4/6+nrVe7/xxhtYt26d6mc333wzxo4dq/j/pqYmLFq0SHXAVVdXi7k/regzh8OB888/H+ecc06X99mPf/xjS1x+8m4DBgzAVVddpfqdXbt2GR5wRJLJJF5//XXVzwYNGoS77rpLJKEWbIVLJBKiK9UVdBz6hAKrW6tWH464gWQ2N7J/o/Ugx8SIe0Tu6/f7kUwmJW1lhOOVTqcVfLhcgyexWMxUn1ndv2Zq+umJWl5K4hWYdcHV+ILkBFOXBE2IkXVVKVf56mPGR2flw2lFGeU58+XYklpbZeN4kX0JS+5MI0bUlX1mZbRVaw8nz1mSi31o2QxTm8MWW2wpmLgK8RCro5b5CMpo8eFol8cM/qKFLWnlnpRfY5Ue3UGsrOln1ObUuINmbMsqGy7IgOsJBqFXFDIXMDYbYVQNUM6WCLYnDTK9ySef7qfaHtdoIM1e4Qo4iLUM2mxWZnlWZb0ZXysLsNas3ZMmNdaVxujKxTLZmbUrK+3Xlc8G5jgOkUgEv/vd7/Dtt9+q5rNk3eTH43H8/Oc/x+WXX55z8IDmwy1ZsgSRSESSvJXjOBw7dgzXX3+9YvMdj8dx0UUXYcqUKZLPyO/rrrsOZ5xxhqL2XSaTwV/+8he88MILCt19Ph/uvfde+Hw+hYvZ1taGX/3qV5J7ET3OP/98XHvttd2ucAUdbFi3bh327NljmHunZ1culwvNzc2IxWKqg3Dbtm1ie9DXud1ufPLJJ5pBkJtuuglnnXWWWKGItHEkEsEjjzyC/fv358yUyfsKF4/H8fLLL2P37t2W3bOmpsaSAUekuLgYV1xxhepnGzduxOzZs1U/Ky8vx5QpU1Q/GzduHMaNG6f62dixY/HBBx8o/r9Pnz546KGHUFVVpfjs3Xffxa233qp6v0AggGuvvbZbr3CffPKJaOz5XkX379+P/fv3G17RyHXnnXceLr30UlUbXr58ueF7dumAIxiXFTw6up5bvmZi+m+63G86nVbkrNTTQ+2MJcdxiMViCl4hnQNTXpeN/Cblfun6cIQPl4/2yNf+LZ99ZuRZei6tPJco7aVZdYa0IHs4s/wvrXvlY0+ohkPp1WXLpofa/ovOe6iWe5K1Phyd0KcnBaW667PkeSnpPrPMzmCLLbYUTFx2E6hHo+RBi3xEAgtdL4+OlpoNkXcFR60rSoiRVVKLg2hWJ3vAaXSsWjlluhOsIH5qdWq+3stoPb98GDqLsVt1XS7PyrYHNNtvtkuZJcih1uHy8kg9YT9jJivzD33SzUc/un7og4zjODQ1NSlq2JGARGlpKZ5++mlF0YdkMonTTjuNuSPdbjfuvPNOTJ48WcH/KikpQXl5uSWrC7l+8uTJOPHEE+HxeBRJf0aMGKFYATmOw/Hjx/Hoo4/i8OHDEh0TiQROOukk3HbbbfB4PEwr+WWXXYaLL75Ywr0jnz399NPYvn27gpIUCoVwxx13oK6uDslkMmf8zuv14q9//Ss2bNigOmk+99xzeOeddyQ4HPAv7uC0adMkOChhplRWViIYDNoDjmXAHT9+HMuXL1flw5133nl49NFHLZsVXS4XLr744ry7c+R6PTxQ61mRSAQvvfQSvvvuO8V3R40ahVtuuUUygI0MuDPPPBPXXHON6ndeffVVbN++XaQyEfH7/ZgyZQoGDx5sWZ83NDRIBhwtb775Jt58803FNX6/Hx9++CFOPvnknPvM3sNBmw+XyWTgcrmQTCYlK1+uQQ+r+V9mn6WlP8dxityZudbLk9eHo1cyLQ6jIAi6NexYhMYzjQaxaA4jwehYaunZAy5Lh2hhbVbz0AoZnTT7LK06dbnWyyMGSg84Pf3M1rDTuhdLnk45h9EKPf4f/KVNlqmLh+cAAAAASUVORK5CYII=" width="200" height="200" alt="QR Code USDT TRC20" style="display:block;" />
+      </div>
+      <div style="font-size:11px;color:var(--muted);margin-top:8px;">📱 Scanne avec ton wallet crypto</div>
+    </div>
+
+    <!-- ADRESSE -->
+    <div style="background:rgba(200,241,53,0.04);border:1px solid rgba(200,241,53,0.2);border-radius:10px;padding:14px 16px;margin-bottom:14px;">
+      <div style="font-size:10px;color:var(--accent);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:8px;">Adresse USDT TRC-20</div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <code id="wallet-addr" style="font-family:monospace;font-size:11px;color:var(--white);word-break:break-all;flex:1;line-height:1.6;">TRsLwZHXkZq9y2UoJaWWZefA4fKJXwgKYu</code>
+        <button onclick="copyAddress()" id="copy-btn" style="flex-shrink:0;background:var(--accent);color:var(--bg);border:none;border-radius:6px;padding:8px 12px;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap;transition:all 0.2s;">COPIER</button>
+      </div>
+    </div>
+
+    <!-- MONTANT -->
+    <div style="background:rgba(200,241,53,0.04);border:1px solid rgba(200,241,53,0.2);border-radius:10px;padding:12px 16px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;">
+      <div>
+        <div style="font-size:10px;color:var(--accent);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:4px;">Montant exact</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--white);">999 <span style="color:var(--accent);">USDT</span></div>
+      </div>
+      <div style="font-size:28px;">💎</div>
+    </div>
+
+    <!-- ALERTE RÉSEAU -->
+    <div style="background:rgba(255,107,53,0.07);border:1px solid rgba(255,107,53,0.25);border-radius:8px;padding:11px 14px;margin-bottom:20px;display:flex;gap:10px;align-items:flex-start;">
+      <span style="font-size:15px;flex-shrink:0;margin-top:1px;">⚠️</span>
+      <p style="font-size:12px;color:rgba(255,140,80,0.95);line-height:1.5;margin:0;"><strong>Réseau TRC-20 uniquement.</strong> Ne pas envoyer via ERC-20 ou BEP-20 — les fonds seraient perdus définitivement.</p>
+    </div>
+
+    <!-- ÉTAPES CLAIRES -->
+    <div style="background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:16px 18px;margin-bottom:20px;">
+      <div style="font-size:11px;color:var(--muted);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:14px;">📋 Étapes après ton paiement</div>
+
+      <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;">
+        <div style="width:24px;height:24px;background:var(--accent);color:var(--bg);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;">1</div>
+        <div style="font-size:13px;color:var(--muted2);line-height:1.5;">Envoie <strong style="color:var(--white);">999 USDT TRC-20</strong> à l'adresse ci-dessus</div>
+      </div>
+
+      <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;">
+        <div style="width:24px;height:24px;background:var(--accent);color:var(--bg);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;">2</div>
+        <div style="font-size:13px;color:var(--muted2);line-height:1.5;">Récupère le <strong style="color:var(--white);">hash de ta transaction</strong> sur ton wallet ou sur <span style="color:var(--accent);">tronscan.org</span></div>
+      </div>
+
+      <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;">
+        <div style="width:24px;height:24px;background:var(--accent);color:var(--bg);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;">3</div>
+        <div style="font-size:13px;color:var(--muted2);line-height:1.5;">Envoie ce hash sur Telegram → <strong style="color:#29b6f6;">@ArbitrageVaultMaster</strong></div>
+      </div>
+
+      <div style="display:flex;gap:12px;align-items:flex-start;">
+        <div style="width:24px;height:24px;background:var(--accent);color:var(--bg);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;">4</div>
+        <div style="font-size:13px;color:var(--muted2);line-height:1.5;">Tu reçois ton <strong style="color:var(--white);">accès complet</strong> à la formation sous <strong style="color:var(--accent);">24h maximum</strong></div>
+      </div>
+    </div>
+
+    <!-- BOUTON CONFIRMER -->
+    <button onclick="confirmPayment()" style="width:100%;background:var(--accent);color:var(--bg);border:none;border-radius:8px;padding:15px;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:0.04em;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:8px;" onmouseover="this.style.background='#d8ff45';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--accent)';this.style.transform='translateY(0)'">
+      ✅ J'ai payé — Envoyer le hash sur Telegram
+    </button>
+
+    <p style="text-align:center;font-size:11px;color:var(--muted);margin-top:12px;">Paiement direct · Aucun intermédiaire · Accès sous 24h</p>
+
+  </div>
+</div>
+
+<!-- WHAT'S INCLUDED BREAKDOWN -->
+<div style="margin-top:48px;background:var(--surface);border:1px solid var(--border2);border-radius:14px;padding:36px 32px;" class="reveal">
+  <h3 style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:0.05em;margin-bottom:24px;">Ce que tu reçois immédiatement dans l'Elite Pack</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+    <div style="display:flex;gap:12px;align-items:flex-start;">
+      <span style="color:var(--accent);font-size:20px;margin-top:2px;">📘</span>
+      <div>
+        <div style="font-weight:500;font-size:14px;margin-bottom:4px;">Formation PDF complète</div>
+        <div style="font-size:12px;color:var(--muted2);">300+ pages, mise en page premium, lisible sur tous supports</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:12px;align-items:flex-start;">
+      <span style="color:var(--accent);font-size:20px;margin-top:2px;">⚙️</span>
+      <div>
+        <div style="font-weight:500;font-size:14px;margin-bottom:4px;">Guide de démarrage complet</div>
+        <div style="font-size:12px;color:var(--muted2);">Étape par étape : VPS → Broker → Installation → Premier trade</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:12px;align-items:flex-start;">
+      <span style="color:var(--accent);font-size:20px;margin-top:2px;">✅</span>
+      <div>
+        <div style="font-weight:500;font-size:14px;margin-bottom:4px;">Checklist de démarrage</div>
+        <div style="font-size:12px;color:var(--muted2);">Step-by-step : VPS → Broker → Config → Premier trade</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- ══════════════ FAQ ══════════════ -->
+
+<section id="faq">
+  <div class="section-sm">
+    <div class="reveal">
+      <div class="label">Questions fréquentes</div>
+      <h2 class="big-title">Les réponses<br><em>honnêtes.</em></h2>
+    </div>
+
+```
+<div class="faq-list reveal">
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      C'est légal, l'arbitrage de latence ?
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-a">L'arbitrage de latence est une stratégie de trading parfaitement légale. Tu utilises des informations publiquement disponibles (les prix) pour prendre des décisions. Certains brokers l'interdisent dans leurs CGU — c'est un risque commercial (fermeture de compte) mais pas un risque légal. Cette formation t'explique comment gérer ce risque commercial intelligemment.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      Faut-il du capital important pour commencer ?
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-a">Non. Tu peux commencer avec 200-500€ par compte. L'objectif de la phase initiale est d'apprendre et tester, pas de maximiser les profits. La formation te guide pour une progression réaliste et sécurisée du capital.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      Est-ce que ça fonctionne encore en 2026 ?
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-a">Oui. Les marchés retail sont encore très hétérogènes en termes d'infrastructure. L'explosion des prop firms en 2022-2026 a même créé de nouvelles opportunités. La stratégie évolue — les outils comme DAAS évoluent aussi. Ce qui ne change pas : la logique fondamentale de la latence.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      Faut-il des connaissances techniques avancées ?
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-a">Non. Si tu sais utiliser MT4/MT5 et louer un VPS, tu as les bases nécessaires. La formation explique chaque étape depuis zéro. Pas besoin de coder ou d'avoir un bagage en informatique.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      Qu'est-ce qui est inclus dans la formation ?
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-a">La formation inclut l'accès complet aux 35 modules, le PDF téléchargeable (300+ pages), la checklist de démarrage VPS/Broker/Config et le support prioritaire 48h. C'est une offre unique, tout est inclus dès le premier jour.</div>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- ══════════════ POUR QUI ══════════════ -->
+
+<section style="background:var(--bg);padding:100px 0;">
+  <div class="section">
+    <div class="reveal" style="text-align:center;">
+      <div class="label" style="justify-content:center;">Qualification</div>
+      <h2 class="big-title" style="text-align:center;">Cette formation<br><em>est faite pour toi ?</em></h2>
+    </div>
+    <div id="pour-qui" class="pourqui-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:2px;border-radius:16px;overflow:hidden;margin-top:48px;">
+      <!-- OUI -->
+      <div style="background:rgba(200,241,53,0.04);border:1px solid rgba(200,241,53,0.15);border-radius:14px 0 0 14px;padding:36px 32px;">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--accent);letter-spacing:0.1em;margin-bottom:24px;display:flex;align-items:center;gap:12px;">
+          <span style="width:32px;height:32px;background:rgba(200,241,53,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;">✓</span>
+          OUI, C'EST POUR TOI SI...
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div style="display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--muted2);"><span style="color:var(--accent);margin-top:2px;flex-shrink:0;">→</span>Tu veux un edge systématique, pas des signaux aléatoires</div>
+          <div style="display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--muted2);"><span style="color:var(--accent);margin-top:2px;flex-shrink:0;">→</span>Tu sais utiliser MT4/MT5 ou tu es prêt à l'apprendre</div>
+          <div style="display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--muted2);"><span style="color:var(--accent);margin-top:2px;flex-shrink:0;">→</span>Tu es prêt à investir 2-4 semaines de test avant de scaler</div>
+          <div style="display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--muted2);"><span style="color:var(--accent);margin-top:2px;flex-shrink:0;">→</span>Tu veux comprendre chaque réglage, pas juste copier-coller</div>
+          <div style="display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--muted2);"><span style="color:var(--accent);margin-top:2px;flex-shrink:0;">→</span>Tu as au minimum 500€ de capital disponible pour tester</div>
+          <div style="display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--muted2);"><span style="color:var(--accent);margin-top:2px;flex-shrink:0;">→</span>Tu cherches une vraie stratégie long terme, pas un coup</div>
+        </div>
+      </div>
+      <!-- NON -->
+      <div style="background:rgba(255,69,69,0.03);border:1px solid rgba(255,69,69,0.12);border-radius:0 14px 14px 0;padding:36px 32px;">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--red);letter-spacing:0.1em;margin-bottom:24px;display:flex;align-items:center;gap:12px;">
+          <span style="width:32px;height:32px;background:rgba(255,69,69,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;">✗</span>
+          CE N'EST PAS POUR TOI SI...
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div style="display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--muted2);"><span style="color:var(--red);margin-top:2px;flex-shrink:0;">→</span>Tu cherches un résultat magique sans effort ni apprentissage</div>
+          <div style="display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--muted2);"><span style="color:var(--red);margin-top:2px;flex-shrink:0;">→</span>Tu veux lancer un robot sans comprendre ce qu'il fait</div>
+          <div style="display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--muted2);"><span style="color:var(--red);margin-top:2px;flex-shrink:0;">→</span>Tu n'as pas de capital de départ disponible</div>
+          <div style="display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--muted2);"><span style="color:var(--red);margin-top:2px;flex-shrink:0;">→</span>Tu attends des profits la première semaine sans tester</div>
+          <div style="display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--muted2);"><span style="color:var(--red);margin-top:2px;flex-shrink:0;">→</span>Tu n'es pas prêt à louer un VPS ou à ouvrir plusieurs comptes</div>
+          <div style="display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--muted2);"><span style="color:var(--red);margin-top:2px;flex-shrink:0;">→</span>Tu cherches une formation "get rich quick"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ LOGOS COMPATIBLES ══════════════ -->
+
+<section style="background:var(--bg2);padding:60px 0;border-top:1px solid var(--border2);border-bottom:1px solid var(--border2);">
+  <div style="max-width:900px;margin:0 auto;padding:0 24px;">
+    <div style="text-align:center;margin-bottom:36px;" class="reveal">
+      <div style="font-size:10px;color:var(--muted);letter-spacing:0.3em;text-transform:uppercase;">Compatible avec</div>
+    </div>
+    <div class="logos-bar" style="display:flex;justify-content:center;align-items:center;gap:48px;flex-wrap:wrap;" class="reveal">
+      <div style="text-align:center;opacity:0.6;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--accent);letter-spacing:0.1em;">MetaTrader 4</div>
+        <div style="font-size:10px;color:var(--muted);letter-spacing:0.1em;margin-top:4px;">MT4</div>
+      </div>
+      <div class="logos-sep" style="width:1px;height:32px;background:var(--border2);"></div>
+      <div style="text-align:center;opacity:0.6;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--accent);letter-spacing:0.1em;">MetaTrader 5</div>
+        <div style="font-size:10px;color:var(--muted);letter-spacing:0.1em;margin-top:4px;">MT5</div>
+      </div>
+      <div class="logos-sep" style="width:1px;height:32px;background:var(--border2);"></div>
+      <div style="text-align:center;opacity:0.6;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--gold);letter-spacing:0.1em;">Westernpips 7</div>
+        <div style="font-size:10px;color:var(--muted);letter-spacing:0.1em;margin-top:4px;">WP7</div>
+      </div>
+      <div class="logos-sep" style="width:1px;height:32px;background:var(--border2);"></div>
+      <div style="text-align:center;opacity:0.6;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--accent);letter-spacing:0.1em;">DAAS</div>
+        <div style="font-size:10px;color:var(--muted);letter-spacing:0.1em;margin-top:4px;">Deep Analysis</div>
+      </div>
+      <div class="logos-sep" style="width:1px;height:32px;background:var(--border2);"></div>
+      <div style="text-align:center;opacity:0.6;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:#9b7fff;letter-spacing:0.1em;">MADEO HFT</div>
+        <div style="font-size:10px;color:var(--muted);letter-spacing:0.1em;margin-top:4px;">High Frequency</div>
+      </div>
+      <div class="logos-sep" style="width:1px;height:32px;background:var(--border2);"></div>
+      <div style="text-align:center;opacity:0.6;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--accent);letter-spacing:0.1em;">StableVPS</div>
+        <div style="font-size:10px;color:var(--muted);letter-spacing:0.1em;margin-top:4px;">Infrastructure</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ APERÇU PDF ══════════════ -->
+
+<section style="background:var(--bg);padding:100px 0;">
+  <div class="section">
+    <div class="reveal" style="text-align:center;">
+      <div class="label" style="justify-content:center;">Aperçu exclusif</div>
+      <h2 class="big-title" style="text-align:center;">Un avant-goût<br><em>du contenu.</em></h2>
+      <p style="font-size:16px;color:var(--muted2);max-width:560px;margin:0 auto 48px;">La qualité que tu obtiens dès l'achat — mise en page premium, contenu dense, lisible sur tous tes appareils.</p>
+    </div>
+    <div class="pdf-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;" class="reveal">
+      <!-- PAGE 1 -->
+      <div style="background:var(--surface);border:1px solid var(--border2);border-radius:12px;overflow:hidden;position:relative;">
+        <div style="background:linear-gradient(135deg,#0a0f1e,#0e1525);padding:28px 24px;min-height:200px;filter:blur(3px);user-select:none;pointer-events:none;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--accent);margin-bottom:12px;">01 — L'Arbitrage</div>
+          <div style="height:8px;background:rgba(255,255,255,0.06);border-radius:4px;margin-bottom:8px;width:90%;"></div>
+          <div style="height:8px;background:rgba(255,255,255,0.06);border-radius:4px;margin-bottom:8px;width:75%;"></div>
+          <div style="height:8px;background:rgba(255,255,255,0.06);border-radius:4px;margin-bottom:8px;width:85%;"></div>
+          <div style="height:8px;background:rgba(255,255,255,0.06);border-radius:4px;margin-bottom:20px;width:60%;"></div>
+          <div style="height:60px;background:rgba(200,241,53,0.05);border:1px solid rgba(200,241,53,0.1);border-radius:8px;margin-bottom:12px;"></div>
+          <div style="height:8px;background:rgba(255,255,255,0.06);border-radius:4px;margin-bottom:8px;width:80%;"></div>
+          <div style="height:8px;background:rgba(255,255,255,0.06);border-radius:4px;width:65%;"></div>
+        </div>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(6,8,15,0.5);">
+          <div style="text-align:center;">
+            <div style="font-size:28px;margin-bottom:8px;">🔒</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:14px;color:var(--accent);letter-spacing:0.15em;">MODULE 01</div>
+          </div>
+        </div>
+      </div>
+      <!-- PAGE 2 -->
+      <div style="background:var(--surface);border:1px solid rgba(200,241,53,0.2);border-radius:12px;overflow:hidden;position:relative;">
+        <div style="background:linear-gradient(135deg,#0a0f1e,#0e1525);padding:28px 24px;min-height:200px;filter:blur(3px);user-select:none;pointer-events:none;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--gold);margin-bottom:12px;">05 — Stratégies</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
+            <div style="height:50px;background:rgba(200,241,53,0.08);border-radius:6px;"></div>
+            <div style="height:50px;background:rgba(245,200,66,0.08);border-radius:6px;"></div>
+            <div style="height:50px;background:rgba(123,97,255,0.08);border-radius:6px;"></div>
+            <div style="height:50px;background:rgba(255,107,53,0.08);border-radius:6px;"></div>
+          </div>
+          <div style="height:8px;background:rgba(255,255,255,0.06);border-radius:4px;margin-bottom:8px;width:85%;"></div>
+          <div style="height:8px;background:rgba(255,255,255,0.06);border-radius:4px;width:70%;"></div>
+        </div>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(6,8,15,0.5);">
+          <div style="text-align:center;">
+            <div style="font-size:28px;margin-bottom:8px;">🔒</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:14px;color:var(--accent);letter-spacing:0.15em;">MODULE 05</div>
+          </div>
+        </div>
+      </div>
+      <!-- PAGE 3 -->
+      <div style="background:var(--surface);border:1px solid var(--border2);border-radius:12px;overflow:hidden;position:relative;">
+        <div style="background:linear-gradient(135deg,#0a0f1e,#0e1525);padding:28px 24px;min-height:200px;filter:blur(3px);user-select:none;pointer-events:none;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:#9b7fff;margin-bottom:12px;">09 — Discrétion</div>
+          <div style="height:8px;background:rgba(255,255,255,0.06);border-radius:4px;margin-bottom:8px;width:90%;"></div>
+          <div style="height:8px;background:rgba(255,255,255,0.06);border-radius:4px;margin-bottom:8px;width:70%;"></div>
+          <div style="height:40px;background:rgba(255,69,69,0.06);border:1px solid rgba(255,69,69,0.1);border-radius:6px;margin:12px 0;"></div>
+          <div style="height:8px;background:rgba(255,255,255,0.06);border-radius:4px;margin-bottom:8px;width:80%;"></div>
+          <div style="height:8px;background:rgba(255,255,255,0.06);border-radius:4px;width:55%;"></div>
+        </div>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(6,8,15,0.5);">
+          <div style="text-align:center;">
+            <div style="font-size:28px;margin-bottom:8px;">🔒</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:14px;color:var(--accent);letter-spacing:0.15em;">MODULE 09</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:28px;" class="reveal">
+      <p style="font-size:13px;color:var(--muted2);">300+ pages au total · PDF téléchargeable · Mis à jour régulièrement</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CALCULATRICE VALEUR ══════════════ -->
+
+<section style="background:var(--bg2);padding:100px 0;">
+  <div style="max-width:800px;margin:0 auto;padding:0 24px;">
+    <div class="reveal" style="text-align:center;">
+      <div class="label" style="justify-content:center;">Calcul de valeur</div>
+      <h2 class="big-title" style="text-align:center;">Ce que tu économises<br><em>vraiment.</em></h2>
+      <p style="font-size:16px;color:var(--muted2);max-width:520px;margin:0 auto 48px;">Le coût réel d'apprendre l'arbitrage seul, sans guide, sans réglages testés.</p>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border2);border-radius:16px;overflow:hidden;" class="reveal">
+      <!-- HEADER -->
+      <div class="calc-header" style="background:rgba(200,241,53,0.05);border-bottom:1px solid var(--border2);padding:20px 32px;display:grid;grid-template-columns:1fr auto auto;gap:16px;font-size:11px;color:var(--muted);letter-spacing:0.15em;text-transform:uppercase;">
+        <span>Élément</span><span>Coût réel</span><span>Avec la formation</span>
+      </div>
+      <!-- ROWS -->
+      <div style="padding:0 32px;">
+        <div class="calc-row" style="display:grid;grid-template-columns:1fr auto auto;gap:16px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.03);align-items:center;">
+          <span style="font-size:14px;color:var(--muted2);">Semaines de tests ratés (capital perdu)</span>
+          <span style="font-size:14px;color:var(--red);font-family:'Bebas Neue',sans-serif;font-size:18px;">500-2000€</span>
+          <span style="color:var(--accent);font-size:13px;font-weight:600;">0€</span>
+        </div>
+        <div class="calc-row" style="display:grid;grid-template-columns:1fr auto auto;gap:16px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.03);align-items:center;">
+          <span style="font-size:14px;color:var(--muted2);">Mois de recherche de brokers lents</span>
+          <span style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--red);">60-120h</span>
+          <span style="color:var(--accent);font-size:13px;font-weight:600;">Inclus</span>
+        </div>
+        <div class="calc-row" style="display:grid;grid-template-columns:1fr auto auto;gap:16px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.03);align-items:center;">
+          <span style="font-size:14px;color:var(--muted2);">Fichiers de config à créer et calibrer soi-même</span>
+          <span style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--red);">3-6 semaines</span>
+          <span style="color:var(--accent);font-size:13px;font-weight:600;">Inclus</span>
+        </div>
+        <div class="calc-row" style="display:grid;grid-template-columns:1fr auto auto;gap:16px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.03);align-items:center;">
+          <span style="font-size:14px;color:var(--muted2);">Comptes fermés avant de comprendre la discrétion</span>
+          <span style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--red);">200-500€</span>
+          <span style="color:var(--accent);font-size:13px;font-weight:600;">Évité</span>
+        </div>
+        <div class="calc-row" style="display:grid;grid-template-columns:1fr auto auto;gap:16px;padding:18px 0;align-items:center;">
+          <span style="font-size:14px;color:var(--muted2);">Accès à une communauté active de traders arb</span>
+          <span style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--red);">Introuvable</span>
+          <span style="color:var(--accent);font-size:13px;font-weight:600;">Inclus</span>
+        </div>
+      </div>
+      <!-- TOTAL -->
+      <div style="background:rgba(200,241,53,0.06);border-top:1px solid rgba(200,241,53,0.15);padding:24px 32px;display:grid;grid-template-columns:1fr auto auto;gap:16px;align-items:center;">
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--white);letter-spacing:0.05em;">TOTAL ÉCONOMISÉ</span>
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--red);text-decoration:line-through;">2 700€+</span>
+        <div style="text-align:right;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--accent);">999€</div>
+          <div style="font-size:10px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;">Prix promo · 100 premiers</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ FINAL CTA ══════════════ -->
+
+<section class="final-cta" id="final">
+  <div class="final-bg-text">PROFIT</div>
+
+  <div class="reveal" style="position:relative;z-index:1;">
+    <h2 class="final-title">
+      Arrête de regarder.<br>
+      <em>Commence à trader.</em>
+    </h2>
+
+```
+<p class="final-sub">
+  La première formation en France sur l'arbitrage de latence. 5000 membres. 100 places au tarif promo. Rejoins ceux qui ont choisi un edge réel.
+</p>
+
+<div class="cta-group" style="position:relative;z-index:1;">
+  <div class="btn-primary" style="font-size:16px;padding:20px 48px;cursor:pointer;display:inline-flex;" onclick="document.getElementById('tarifs').scrollIntoView({behavior:'smooth'})">
+    Accéder à la formation maintenant
+    <span class="btn-arrow">→</span>
+  </div>
+  <p class="cta-note">Accès complet · Prix promo 100 premiers · Paiement sécurisé</p>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- ══════════════ LOGICIELS ══════════════ -->
+
+<section id="logiciels" style="background:var(--bg2);padding:100px 0;">
+  <div class="section">
+    <div class="reveal" style="text-align:center;">
+      <div class="label" style="justify-content:center;">Outils & Sauvegardes</div>
+      <h2 class="big-title" style="text-align:center;">Les logiciels<br><em>disponibles.</em></h2>
+      <p style="font-size:16px;color:var(--muted2);max-width:580px;margin:0 auto;">Accède aux meilleurs logiciels d'arbitrage du marché — achat ou location. Clique sur le logiciel qui t'intéresse pour être mis en contact directement.</p>
+    </div>
+
+```
+<div class="logiciels-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px;" class="reveal">
+
+  <!-- DAAS -->
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:32px 28px;text-align:center;transition:all 0.3s;cursor:pointer;position:relative;overflow:hidden;" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 24px 60px rgba(200,241,53,0.12)';this.style.borderColor='rgba(200,241,53,0.4)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none';this.style.borderColor='rgba(200,241,53,0.1)'" onclick="window.open('https://t.me/ArbitrageVaultMaster?text=Je%20souhaiterais%20acc%C3%A9der%20au%20logiciel%20DAAS%20disponible%20sur%20ton%20site','_blank')">
+    <div style="font-size:44px;margin-bottom:16px;">🔬</div>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--accent);letter-spacing:0.08em;margin-bottom:8px;">DAAS</div>
+    <div style="font-size:12px;color:var(--accent);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:16px;font-weight:600;">Deep Analysis Arbitrage Software</div>
+    <p style="font-size:13px;color:var(--muted2);line-height:1.6;margin-bottom:20px;">Analyse profonde des signaux, filtres intelligents anti-faux-signaux, mode stealth intégré. La référence nouvelle génération.</p>
+    <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:20px;">
+      <span style="background:rgba(200,241,53,0.1);color:var(--accent);border:1px solid rgba(200,241,53,0.2);border-radius:4px;padding:3px 10px;font-size:10px;letter-spacing:0.1em;font-weight:600;">ACHAT</span>
+      <span style="background:rgba(200,241,53,0.1);color:var(--accent);border:1px solid rgba(200,241,53,0.2);border-radius:4px;padding:3px 10px;font-size:10px;letter-spacing:0.1em;font-weight:600;">LOCATION</span>
+    </div>
+    <div style="background:var(--accent);color:var(--bg);font-size:13px;font-weight:700;padding:12px 24px;border-radius:6px;letter-spacing:0.05em;transition:all 0.2s;">
+      Contacter via Telegram →
+    </div>
+  </div>
+
+  <!-- WESTERNPIPS 7 -->
+  <div style="background:var(--surface);border:1px solid rgba(245,200,66,0.2);border-radius:14px;padding:32px 28px;text-align:center;transition:all 0.3s;cursor:pointer;position:relative;overflow:hidden;" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 24px 60px rgba(245,200,66,0.1)';this.style.borderColor='rgba(245,200,66,0.5)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none';this.style.borderColor='rgba(245,200,66,0.2)'" onclick="window.open('https://t.me/ArbitrageVaultMaster?text=Je%20souhaiterais%20acc%C3%A9der%20au%20logiciel%20Westernpips%207%20disponible%20sur%20ton%20site','_blank')">
+    <div style="font-size:44px;margin-bottom:16px;">⚡</div>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--gold);letter-spacing:0.08em;margin-bottom:8px;">WESTERNPIPS 7</div>
+    <div style="font-size:12px;color:var(--gold);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:16px;font-weight:600;">Le classique éprouvé</div>
+    <p style="font-size:13px;color:var(--muted2);line-height:1.6;margin-bottom:20px;">10+ ans de terrain, communauté massive, stratégies Lock très matures. La référence historique de l'arbitrage retail.</p>
+    <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:20px;">
+      <span style="background:rgba(245,200,66,0.1);color:var(--gold);border:1px solid rgba(245,200,66,0.2);border-radius:4px;padding:3px 10px;font-size:10px;letter-spacing:0.1em;font-weight:600;">ACHAT</span>
+      <span style="background:rgba(245,200,66,0.1);color:var(--gold);border:1px solid rgba(245,200,66,0.2);border-radius:4px;padding:3px 10px;font-size:10px;letter-spacing:0.1em;font-weight:600;">LOCATION</span>
+    </div>
+    <div style="background:var(--gold);color:var(--bg);font-size:13px;font-weight:700;padding:12px 24px;border-radius:6px;letter-spacing:0.05em;transition:all 0.2s;">
+      Contacter via Telegram →
+    </div>
+  </div>
+
+  <!-- MADEO HFT -->
+  <div style="background:var(--surface);border:1px solid rgba(123,97,255,0.2);border-radius:14px;padding:32px 28px;text-align:center;transition:all 0.3s;cursor:pointer;position:relative;overflow:hidden;" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 24px 60px rgba(123,97,255,0.1)';this.style.borderColor='rgba(123,97,255,0.5)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none';this.style.borderColor='rgba(123,97,255,0.2)'" onclick="window.open('https://t.me/ArbitrageVaultMaster?text=Je%20souhaiterais%20acc%C3%A9der%20au%20logiciel%20MADEO%20HFT%20disponible%20sur%20ton%20site','_blank')">
+    <div style="font-size:44px;margin-bottom:16px;">🚀</div>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:#9b7fff;letter-spacing:0.08em;margin-bottom:8px;">MADEO HFT</div>
+    <div style="font-size:12px;color:#9b7fff;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:16px;font-weight:600;">High Frequency Trading</div>
+    <p style="font-size:13px;color:var(--muted2);line-height:1.6;margin-bottom:20px;">Solution HFT avancée pour les traders cherchant la performance maximale. Exécution ultra-rapide et précise.</p>
+    <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:20px;">
+      <span style="background:rgba(123,97,255,0.1);color:#9b7fff;border:1px solid rgba(123,97,255,0.2);border-radius:4px;padding:3px 10px;font-size:10px;letter-spacing:0.1em;font-weight:600;">ACHAT</span>
+      <span style="background:rgba(123,97,255,0.1);color:#9b7fff;border:1px solid rgba(123,97,255,0.2);border-radius:4px;padding:3px 10px;font-size:10px;letter-spacing:0.1em;font-weight:600;">LOCATION</span>
+    </div>
+    <div style="background:#9b7fff;color:var(--bg);font-size:13px;font-weight:700;padding:12px 24px;border-radius:6px;letter-spacing:0.05em;transition:all 0.2s;">
+      Contacter via Telegram →
+    </div>
+  </div>
+
+</div>
+
+<!-- NOTE BAS DE SECTION -->
+<div style="margin-top:32px;text-align:center;background:rgba(0,136,204,0.05);border:1px solid rgba(0,136,204,0.15);border-radius:10px;padding:20px 28px;" class="reveal">
+  <p style="font-size:13px;color:var(--muted2);">✈️ En cliquant sur un logiciel, tu seras redirigé vers <strong style="color:#29b6f6;">@ArbitrageVaultMaster</strong> sur Telegram avec un message pré-écrit. Réponds rapides garanties.</p>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- ══════════════ STABLEVPS ══════════════ -->
+
+<section style="background:var(--bg);padding:100px 0;border-top:1px solid var(--border2);">
+  <div class="section">
+    <div class="reveal" style="text-align:center;">
+      <div class="label" style="justify-content:center;">Infrastructure recommandée</div>
+      <h2 class="big-title" style="text-align:center;">Ton VPS,<br><em>optimisé arbitrage.</em></h2>
+      <p style="font-size:16px;color:var(--muted2);max-width:580px;margin:0 auto;">La latence d'exécution dépend directement de ton infrastructure. StableVPS est conçu spécifiquement pour les traders — faible latence, uptime maximal, localisations stratégiques.</p>
+    </div>
+
+```
+<div style="margin-top:56px;background:linear-gradient(135deg,rgba(200,241,53,0.05) 0%,var(--surface) 60%);border:1px solid rgba(200,241,53,0.2);border-radius:20px;padding:48px;position:relative;overflow:hidden;" class="reveal">
+
+  <!-- BG GLOW -->
+  <div style="position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(200,241,53,0.05) 0%,transparent 70%);top:-100px;right:-100px;pointer-events:none;"></div>
+
+  <div class="stablevps-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;">
+
+    <!-- GAUCHE : INFOS -->
+    <div>
+      <div style="display:inline-flex;align-items:center;gap:10px;background:rgba(200,241,53,0.08);border:1px solid rgba(200,241,53,0.2);border-radius:100px;padding:6px 16px;margin-bottom:24px;">
+        <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse2 1.5s infinite;"></span>
+        <span style="font-size:10px;color:var(--accent);letter-spacing:0.2em;text-transform:uppercase;font-weight:600;">Partenaire officiel</span>
+      </div>
+
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--accent);letter-spacing:0.05em;line-height:1;margin-bottom:8px;">STABLE<span style="color:var(--white);">VPS</span></div>
+      <div style="font-size:13px;color:var(--muted);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:24px;">stablevps.eu</div>
+
+      <p style="font-size:15px;color:var(--muted2);line-height:1.7;margin-bottom:28px;">Un VPS mal positionné ou trop lent rend l'arbitrage impossible. StableVPS propose des serveurs <strong style="color:var(--white);">ultra-faible latence</strong> pensés pour le trading algorithmique et l'arbitrage — avec des datacenters proches des serveurs brokers MT4/MT5.</p>
+
+      <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:32px;">
+        <div style="display:flex;gap:12px;align-items:center;font-size:14px;color:var(--muted2);">
+          <span style="color:var(--accent);font-size:16px;">⚡</span>
+          <span><strong style="color:var(--white);">Latence &lt; 5ms</strong> vers les principaux brokers MT4/MT5</span>
+        </div>
+        <div style="display:flex;gap:12px;align-items:center;font-size:14px;color:var(--muted2);">
+          <span style="color:var(--accent);font-size:16px;">🛡️</span>
+          <span><strong style="color:var(--white);">Uptime 99.9%</strong> — ton bot tourne 24h/24 sans interruption</span>
+        </div>
+        <div style="display:flex;gap:12px;align-items:center;font-size:14px;color:var(--muted2);">
+          <span style="color:var(--accent);font-size:16px;">🌍</span>
+          <span><strong style="color:var(--white);">Localisations stratégiques</strong> — Europe, UK, US, Asie</span>
+        </div>
+        <div style="display:flex;gap:12px;align-items:center;font-size:14px;color:var(--muted2);">
+          <span style="color:var(--accent);font-size:16px;">🖥️</span>
+          <span><strong style="color:var(--white);">Compatible MT4/MT5</strong> — installation en quelques minutes</span>
+        </div>
+        <div style="display:flex;gap:12px;align-items:center;font-size:14px;color:var(--muted2);">
+          <span style="color:var(--accent);font-size:16px;">💬</span>
+          <span><strong style="color:var(--white);">Support dédié traders</strong> — tu parles à quelqu'un qui comprend l'arbitrage</span>
+        </div>
+      </div>
+
+      <a href="https://stablevps.eu" target="_blank" style="display:inline-flex;align-items:center;gap:12px;background:var(--accent);color:var(--bg);font-size:14px;font-weight:700;padding:16px 32px;border-radius:8px;text-decoration:none;letter-spacing:0.05em;transition:all 0.25s;" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 16px 40px rgba(200,241,53,0.3)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
+        Découvrir StableVPS
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="stablevps-metrics" style="display:flex;flex-direction:column;gap:16px;">
+      <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:14px;padding:24px 28px;">
+        <div style="font-size:11px;color:var(--muted);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:12px;">Latence typique VPS standard</div>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="flex:1;height:8px;background:rgba(255,69,69,0.15);border-radius:4px;overflow:hidden;">
+            <div style="width:85%;height:100%;background:var(--red);border-radius:4px;"></div>
+          </div>
+          <span style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--red);">80-200ms</span>
+        </div>
+      </div>
+      <div style="background:rgba(200,241,53,0.04);border:1px solid rgba(200,241,53,0.2);border-radius:14px;padding:24px 28px;">
+        <div style="font-size:11px;color:var(--accent);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:12px;">Latence StableVPS optimisé</div>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="flex:1;height:8px;background:rgba(200,241,53,0.1);border-radius:4px;overflow:hidden;">
+            <div style="width:15%;height:100%;background:var(--accent);border-radius:4px;"></div>
+          </div>
+          <span style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--accent);">&lt; 5ms</span>
+        </div>
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:14px;padding:24px 28px;">
+        <div style="font-size:11px;color:var(--muted);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:16px;">Pourquoi c'est critique</div>
+        <p style="font-size:13px;color:var(--muted2);line-height:1.6;">Si ta latence d'exécution dépasse la latence source du broker, <strong style="color:var(--white);">tu arrives systématiquement trop tard</strong>. Un bon VPS n'est pas une option — c'est la base.</p>
+      </div>
+      <div style="background:rgba(200,241,53,0.04);border:1px solid rgba(200,241,53,0.15);border-radius:14px;padding:20px 28px;text-align:center;">
+        <div style="font-size:12px;color:var(--muted2);margin-bottom:6px;">Recommandé par</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--accent);letter-spacing:0.1em;">ARBITRAGE·VAULT</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+  <p><strong>arbitrage-vault.com</strong> — Formation éducative à but informatif.</p>
+  <p style="margin-top:8px;">Le trading comporte des risques. Les résultats passés ne garantissent pas les résultats futurs. Toujours lire et respecter les conditions d'utilisation des plateformes. Opérer dans le cadre légal de votre juridiction.</p>
+  <p style="margin-top:16px;opacity:0.4;">© 2026 · arbitrage-vault.com · Tous droits réservés</p>
+</footer>
+
+<!-- ══════════════ BOUTON FLOTTANT TELEGRAM ══════════════ -->
+
+<div id="tg-float" style="position:fixed;bottom:28px;right:28px;z-index:1000;display:flex;flex-direction:column;align-items:flex-end;gap:10px;">
+  <!-- BULLE MESSAGE -->
+  <div id="tg-bubble" style="background:var(--surface);border:1px solid rgba(0,136,204,0.3);border-radius:12px 12px 0 12px;padding:12px 16px;font-size:13px;color:var(--muted2);max-width:220px;line-height:1.5;box-shadow:0 8px 32px rgba(0,0,0,0.4);transition:all 0.3s;">
+    💬 Une question ? <strong style="color:var(--white);">Écris-moi directement</strong> sur Telegram →
+  </div>
+  <!-- BOUTON -->
+  <div onclick="window.open('https://t.me/ArbitrageVaultMaster?text=Bonjour%2C%20j%27ai%20une%20question%20concernant%20la%20formation%20Arbitrage%20Vault','_blank')" style="width:56px;height:56px;background:linear-gradient(135deg,#0088cc,#006aad);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 8px 32px rgba(0,136,204,0.4);transition:all 0.3s;" onmouseover="this.style.transform='scale(1.1)';this.style.boxShadow='0 12px 40px rgba(0,136,204,0.6)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 8px 32px rgba(0,136,204,0.4)'">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.04 9.613c-.154.68-.555.847-1.124.527l-3.094-2.28-1.493 1.437c-.165.165-.303.303-.622.303l.222-3.152 5.738-5.185c.25-.222-.054-.345-.385-.123L7.08 14.264l-3.05-.952c-.663-.207-.676-.663.138-.981l11.915-4.594c.552-.2 1.035.135.48.511z"/></svg>
+  </div>
+</div>
+
+<script>
+// MODAL PAIEMENT CRYPTO
+function openPayment() {
+  const modal = document.getElementById('pay-modal');
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closePayment() {
+  const modal = document.getElementById('pay-modal');
+  modal.style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+function copyAddress() {
+  const addr = 'TRsLwZHXkZq9y2UoJaWWZefA4fKJXwgKYu';
+  navigator.clipboard.writeText(addr).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = '✓ COPIÉ !';
+    btn.style.background = '#00c896';
+    setTimeout(() => {
+      btn.textContent = 'COPIER';
+      btn.style.background = 'var(--accent)';
+    }, 2000);
+  }).catch(() => {
+    // Fallback pour les navigateurs sans clipboard API
+    const el = document.createElement('textarea');
+    el.value = addr;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = '✓ COPIÉ !';
+    btn.style.background = '#00c896';
+    setTimeout(() => {
+      btn.textContent = 'COPIER';
+      btn.style.background = 'var(--accent)';
+    }, 2000);
+  });
+}
+
+function confirmPayment() {
+  const msg = encodeURIComponent("Bonjour, j'ai effectué mon paiement de 999 USDT TRC-20 pour la formation Arbitrage Vault. Voici le hash de ma transaction : ");
+  window.open('https://t.me/ArbitrageVaultMaster?text=' + msg, '_blank');
+}
+
+// Fermer le modal en cliquant en dehors
+document.getElementById('pay-modal').addEventListener('click', function(e) {
+  if(e.target === this) closePayment();
+});
+
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// FAQ TOGGLE
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if(!isOpen) item.classList.add('open');
+}
+
+// COUNTDOWN
+function startCountdown() {
+  const stored = sessionStorage.getItem('cdown');
+  let end = stored ? parseInt(stored) : Date.now() + (23*3600 + 47*60 + 30) * 1000;
+  if(!stored) sessionStorage.setItem('cdown', end);
+  function tick() {
+    const diff = Math.max(0, end - Date.now());
+    const h = Math.floor(diff / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('c-h').textContent = String(h).padStart(2,'0');
+    document.getElementById('c-m').textContent = String(m).padStart(2,'0');
+    document.getElementById('c-s').textContent = String(s).padStart(2,'0');
+    if(diff > 0) setTimeout(tick, 1000);
+  }
+  tick();
+}
+startCountdown();
+
+// NAV SCROLL EFFECT
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  nav.style.background = window.scrollY > 60 ? 'rgba(6,8,15,0.95)' : 'rgba(9,12,21,0.85)';
+});
+
+
+// MASQUER LA BULLE TELEGRAM APRÈS 6 SECONDES
+setTimeout(() => {
+  const bubble = document.getElementById('tg-bubble');
+  if(bubble) {
+    bubble.style.opacity = '0';
+    bubble.style.transform = 'translateY(10px)';
+    setTimeout(() => { bubble.style.display = 'none'; }, 300);
+  }
+}, 6000);
+</script>
+
+</body>
+</html>
